@@ -13,12 +13,12 @@ const About = ({isDarkMode}) => {
       <motion.h4 
       initial={{opacity: 0, y: -20}}
       whileInView={{opacity: 1, y: 0}}
-      transition={{duration: 0.5, delay: 0.3}}
+      transition={{duration: 0.5, delay: 0.1}}
       className='text-center mb-2 text-lg font-Ovo'>Introduction</motion.h4>
       <motion.h2
       initial={{opacity: 0, y: -20}}
       whileInView={{opacity: 1, y: 0}}
-      transition={{duration: 0.5, delay: 0.5}}className='text-center text-5xl font-Ovo'>About me</motion.h2>
+      transition={{duration: 0.5, delay: 0.3}}className='text-center text-5xl font-Ovo'>About me</motion.h2>
 
       {/* 介绍 */}
       <motion.div 
@@ -39,7 +39,7 @@ const About = ({isDarkMode}) => {
         <motion.div 
         initial={{opacity: 0}}
         whileInView={{opacity: 1}}
-        transition={{duration: 0.6, delay: 0.8}}
+        transition={{duration: 0.6, delay: 0.5}}
         className='flex-1'>
           <p className='mb-10 max-w-2xl font-Ovo'>
             I am a passionate IT student based in Australia, currently focusing on full-stack development with a modern tech stack including React, Node.js, Next.js, and Prisma. As I progress through my academic journey, I constantly seek opportunities to improve my technical skills and deepen my understanding of software engineering, while remaining curious about a wide range of fields.
@@ -48,7 +48,7 @@ const About = ({isDarkMode}) => {
           <motion.ul 
           initial={{opacity: 0}}
           whileInView={{opacity: 1}}
-          transition={{duration: 0.8, delay: 1}}
+          transition={{duration: 0.8, delay: 0.7}}
           className='grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl'>
             {infoList.map(({icon, iconDark, title, description}, index)=>(
               <motion.li 
@@ -63,7 +63,7 @@ const About = ({isDarkMode}) => {
             ))}
           </motion.ul>
 
-          <motion.h4 
+          {/* <motion.h4 
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.3, duration: 0.5 }}
@@ -81,7 +81,7 @@ const About = ({isDarkMode}) => {
                 <Image src={tool} alt='Tool' className='w-5 sm:w-7'/>
               </motion.li>
             ))}
-          </motion.ul>
+          </motion.ul> */}
 
         </motion.div>
       </motion.div>

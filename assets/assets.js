@@ -35,8 +35,42 @@ import right_arrow from './right-arrow.png';
 import send_icon from './send-icon.png';
 import right_arrow_bold from './right-arrow-bold.png';
 import right_arrow_bold_dark from './right-arrow-bold-dark.png';
+import github from './github.png';
+import github_dark from './github_dark.png';
+import linkedin from './linkedin.png';
+import linkedin_dark from './linkedin_dark.png';
+
+// 添加前端技术图标导入
+import react from './react.svg';
+import javascript from './javascript.svg';
+import typescript from './typescript.svg';
+import html from './html.svg';
+import css from './css.svg';
+import tailwindcss from './tailwindcss.svg';
+import figma_svg from './figma.svg';
+import nextjs from './nextjs.svg';
+import python from './python.svg';
+
+// 添加后端和数据库技术图标导入
+import nodejs from './nodejs.svg';
+import express from './express.svg';
+import nestjs from './nestjs.svg';
+import prisma from './prisma.svg';
+import postgresql from './postgresql.svg';
+
+// 添加工具和DevOps技术图标导入
+import git_svg from './git.svg';
+import yarn from './yarn.svg';
+import pnpm from './pnpm.svg';
+import docker from './docker.svg';
+import aws from './aws.png';
+import postman from './postman.svg';
 
 export const assets = {
+    github,
+    github_dark,
+    linkedin,
+    linkedin_dark,
     user_image,
     code_icon,
     code_icon_dark,
@@ -73,7 +107,33 @@ export const assets = {
     right_arrow,
     send_icon,
     right_arrow_bold,
-    right_arrow_bold_dark
+    right_arrow_bold_dark,
+    
+    // Frontend skills
+    react,
+    javascript,
+    typescript,
+    html,
+    css,
+    tailwindcss,
+    figma_svg,
+    nextjs,
+    python,
+
+    // Backend and Database skills
+    nodejs,
+    express,
+    nestjs,
+    prisma,
+    postgresql,
+
+    // Tools and DevOps skills
+    git_svg,
+    yarn,
+    pnpm,
+    docker,
+    aws,
+    postman
 };
 
 export const workData = [
@@ -107,11 +167,115 @@ export const serviceData = [
 ]
 
 export const infoList = [
-    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Technical Skills', description: 'HTML, CSS, JavaScript React Js, Next Js' },
-    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'B.Tech in Computer Science' },
-    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Projects', description: 'Built more than 5 projects' }
+    { icon: assets.code_icon, iconDark: assets.code_icon_dark, title: 'Technical Skills', description: 'React, Node.js, Next.js, Prisma and more.' },
+    { icon: assets.project_icon, iconDark: assets.project_icon_dark, title: 'Projects', description: 'Built more than 5 projects.' },
+    { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'Master of Computing, University of Adelaide.' }
+];
+
+// 修改 frontendSkillsData - 添加HTML、CSS、Python，移除Figma
+export const frontendSkillsData = [
+    {
+        icon: assets.react,
+        title: 'React'
+    },
+    {
+        icon: assets.nextjs,
+        title: 'Next.js'
+    },
+    {
+        icon: assets.tailwindcss,
+        title: 'Tailwind CSS'
+    },
+    {
+        icon: assets.html,
+        title: 'HTML'
+    },
+    {
+        icon: assets.css,
+        title: 'CSS'
+    },
+    {
+        icon: assets.javascript,
+        title: 'JavaScript'
+    },
+    {
+        icon: assets.typescript,
+        title: 'TypeScript'
+    },
+    {
+        icon: assets.python,
+        title: 'Python'
+    }
 ];
 
 export const toolsData = [
     assets.vscode, assets.firebase, assets.mongodb, assets.figma, assets.git
+];
+
+// 添加后端和数据库技能数据
+export const backendSkillsData = [
+    {
+        icon: assets.nodejs,
+        title: 'Node.js'
+    },
+    {
+        icon: assets.express,
+        title: 'Express'
+    },
+    {
+        icon: assets.nestjs,
+        title: 'NestJS'
+    },
+    {
+        icon: assets.prisma,
+        title: 'Prisma'
+    },
+    {
+        icon: assets.postgresql,
+        title: 'PostgreSQL'
+    },
+    {
+        icon: assets.mongodb,
+        title: 'MongoDB'
+    }
+];
+
+// 添加工具和DevOps技能数据 - 添加Figma、Postman、GitHub，修改AWS为EC2
+export const toolsSkillsData = [
+    {
+        icon: assets.git,
+        title: 'Git'
+    },
+    {
+        icon: assets.github,
+        title: 'GitHub'
+    },
+    {
+        icon: assets.vscode,
+        title: 'VSCode'
+    },
+    {
+        icon: assets.figma,
+        title: 'Figma'
+    },
+    {
+        icon: assets.yarn,
+        title: 'Yarn'
+    },
+    {
+        icon: assets.pnpm,
+        title: 'pnpm'
+    },
+    {
+        icon: assets.postman,
+        title: 'Postman'
+    },
+    {
+        icon: assets.docker,
+        title: 'Docker'
+    },
+    {
+        icon: assets.aws,
+        title: 'AWS EC2'
+    }
 ];
