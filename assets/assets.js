@@ -50,6 +50,7 @@ import tailwindcss from './tailwindcss.svg';
 import figma_svg from './figma.svg';
 import nextjs from './nextjs.svg';
 import python from './python.svg';
+import vue from './vuejs.svg';
 
 // 添加后端和数据库技术图标导入
 import nodejs from './nodejs.svg';
@@ -65,6 +66,7 @@ import pnpm from './pnpm.svg';
 import docker from './docker.svg';
 import aws from './aws.png';
 import postman from './postman.svg';
+import soon_logo from './soon_logo.jpg';
 
 export const assets = {
     github,
@@ -119,6 +121,8 @@ export const assets = {
     figma_svg,
     nextjs,
     python,
+    vue,
+
 
     // Backend and Database skills
     nodejs,
@@ -133,7 +137,10 @@ export const assets = {
     pnpm,
     docker,
     aws,
-    postman
+    postman,
+
+    // Work part
+    soon_logo,
 };
 
 export const workData = [
@@ -178,6 +185,10 @@ export const frontendSkillsData = [
         icon: assets.react,
         title: 'React'
     },
+    // {
+    //     icon: assets.vue,
+    //     title: 'Vue'
+    // },
     {
         icon: assets.nextjs,
         title: 'Next.js'
@@ -279,3 +290,23 @@ export const toolsSkillsData = [
         title: 'AWS EC2'
     }
 ];
+
+// 实习经历
+export const internshipData = {
+    company: 'Soon Meta',
+    logo: assets.soon_logo,
+    position: 'Software Engineer Intern',
+    duration: '2024.11 - 2025.2',
+    workType: 'Remote',
+    responsibilities: [
+        'Developed company backend management frontend pages using Vue.js.',
+        'Built the blog module for JobABC website, including frontend pages, backend CRUD operations, and database management.'
+    ],
+    description: 'This internship provided me with hands-on experience in large-scale commercial project development. Most importantly, I gained valuable insights into the software development workflow in a corporate environment and developed essential soft skills for effective communication with colleagues and management.',
+    technologies: [
+        { icon: assets.typescript, name: 'TypeScript' },
+        { icon: assets.vue, name: 'Vue.js' },
+        { icon: assets.nestjs, name: 'NestJS' },
+        { icon: assets.prisma, name: 'Prisma' }
+    ]
+};
