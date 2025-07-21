@@ -51,6 +51,7 @@ import figma_svg from './figma.svg';
 import nextjs from './nextjs.svg';
 import python from './python.svg';
 import vue from './vuejs.svg';
+import threejs from './threejs.svg';
 
 // 添加后端和数据库技术图标导入
 import nodejs from './nodejs.svg';
@@ -67,6 +68,10 @@ import docker from './docker.svg';
 import aws from './aws.png';
 import postman from './postman.svg';
 import soon_logo from './soon_logo.jpg';
+import trae from './trae.svg';
+import claude from './claude.png';
+import cursor from './cursor.svg';
+import sealos from './sealos.png';
 
 export const assets = {
     github,
@@ -122,7 +127,7 @@ export const assets = {
     nextjs,
     python,
     vue,
-
+    threejs,
 
     // Backend and Database skills
     nodejs,
@@ -138,6 +143,10 @@ export const assets = {
     docker,
     aws,
     postman,
+    trae,
+    claude,
+    cursor,
+    sealos,
 
     // Work part
     soon_logo,
@@ -179,16 +188,12 @@ export const infoList = [
     { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'Master of Computing, University of Adelaide.' }
 ];
 
-// 修改 frontendSkillsData - 添加HTML、CSS、Python，移除Figma
+// 修改 frontendSkillsData - 添加Three.js
 export const frontendSkillsData = [
     {
         icon: assets.react,
         title: 'React'
     },
-    // {
-    //     icon: assets.vue,
-    //     title: 'Vue'
-    // },
     {
         icon: assets.nextjs,
         title: 'Next.js'
@@ -216,6 +221,10 @@ export const frontendSkillsData = [
     {
         icon: assets.python,
         title: 'Python'
+    },
+    {
+        icon: assets.threejs,
+        title: 'Three.js'
     }
 ];
 
@@ -251,7 +260,7 @@ export const backendSkillsData = [
     }
 ];
 
-// 添加工具和DevOps技能数据 - 添加Figma、Postman、GitHub，修改AWS为EC2
+// 添加工具和DevOps技能数据 - 添加新的工具
 export const toolsSkillsData = [
     {
         icon: assets.git,
@@ -269,10 +278,10 @@ export const toolsSkillsData = [
         icon: assets.figma,
         title: 'Figma'
     },
-    {
-        icon: assets.yarn,
-        title: 'Yarn'
-    },
+    // {
+    //     icon: assets.yarn,
+    //     title: 'Yarn'
+    // },
     {
         icon: assets.pnpm,
         title: 'pnpm'
@@ -286,9 +295,25 @@ export const toolsSkillsData = [
         title: 'Docker'
     },
     {
+        icon: assets.sealos,
+        title: 'Sealos'
+    },
+    {
         icon: assets.aws,
         title: 'AWS EC2'
-    }
+    },
+    {
+        icon: assets.claude,
+        title: 'Claude'
+    },
+    {
+        icon: assets.trae,
+        title: 'Trae AI'
+    },
+    {
+        icon: assets.cursor,
+        title: 'Cursor'
+    },
 ];
 
 // 实习经历

@@ -54,7 +54,7 @@ const Services = ({isDarkMode}) => {
             <motion.div 
             initial={{y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
+            transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
             className='w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50'
             key={index}>
               <div className='flex items-center justify-center mb-3'>
@@ -62,7 +62,7 @@ const Services = ({isDarkMode}) => {
                   src={skill.icon} 
                   alt={skill.title} 
                   className={`w-8 h-8 object-contain ${
-                    skill.title === 'Next.js' ? 'dark:invert' : ''
+                    skill.title === 'Next.js' || skill.title === 'Three.js' ? 'dark:invert' : ''
                   }`}
                   width={32}
                   height={32}
@@ -96,7 +96,7 @@ const Services = ({isDarkMode}) => {
             <motion.div 
             initial={{y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
+            transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
             className='w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50'
             key={index}>
               <div className='flex items-center justify-center mb-3'>
@@ -138,7 +138,7 @@ const Services = ({isDarkMode}) => {
             <motion.div 
             initial={{y: -20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.5 + index * 0.2, duration: 0.5 }}
+            transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
             className='w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50'
             key={index}>
               <div className='flex items-center justify-center mb-3'>

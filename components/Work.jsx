@@ -46,14 +46,14 @@ const Work = ({isDarkMode}) => {
       transition={{ duration: 0.3 }}
       className='bg-white dark:bg-darkTheme/20 rounded-xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-700'>
         
-        {/* Company Header - 改进版 */}
+        {/* Company Header */}
         <div className='flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6'>
           <div className='w-20 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center'>
             <Image 
               src={internshipData.logo} 
               alt={internshipData.company}
-              width={64}
-              height={64}
+              width={80}
+              height={80}
               className='object-contain'
             />
           </div>
