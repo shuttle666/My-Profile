@@ -31,8 +31,13 @@ const About = ({isDarkMode}) => {
         initial={{opacity: 0, scale: 0.9}}
         whileInView={{opacity: 1, scale: 1}}
         transition={{duration: 0.6}}
-        className='w-64 sm:w-80 rounded-3xl max-w-none'>
-          <Image src={assets.user_image} alt='user_image' className='w-full rounded-3xl'/>
+        className='w-64 aspect-[3/4] sm:w-80 rounded-3xl max-w-none overflow-hidden'>
+          <Image 
+          src={'/myself.jpg'} 
+          alt='user_image'
+          width={600}
+          height={800}
+          className='w-full h-full object-cover object-[47%_center] rounded-3xl'/>
         </motion.div>
 
         {/* 右侧介绍 */}

@@ -11,7 +11,12 @@ const Header = () => {
       whileInView={{scale: 1}}
       transition={{duration: 0.8, type: 'spring', stiffness: 100}}
       >
-        <Image src={assets.profile_img} alt='profile_img' className='rounded-full w-48'/>
+        <Image 
+        src={'/myface.jpg'}
+        width={200}
+        height={200}
+        alt='profile_img' 
+        className='rounded-full w-60 aspect-[1/1] object-cover'/>
       </motion.div>
 
       <motion.h3 

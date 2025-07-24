@@ -52,6 +52,7 @@ import nextjs from './nextjs.svg';
 import python from './python.svg';
 import vue from './vuejs.svg';
 import threejs from './threejs.svg';
+import vitejs from './vitejs.svg';
 
 // 添加后端和数据库技术图标导入
 import nodejs from './nodejs.svg';
@@ -128,6 +129,7 @@ export const assets = {
     python,
     vue,
     threejs,
+    vitejs,
 
     // Backend and Database skills
     nodejs,
@@ -201,6 +203,10 @@ export const frontendSkillsData = [
     {
         icon: assets.tailwindcss,
         title: 'Tailwind CSS'
+    },
+    {
+        icon: assets.vitejs,
+        title: 'Vite'
     },
     {
         icon: assets.html,
@@ -308,7 +314,7 @@ export const toolsSkillsData = [
     },
     {
         icon: assets.trae,
-        title: 'Trae AI'
+        title: 'Trae'
     },
     {
         icon: assets.cursor,
