@@ -16,7 +16,7 @@ const Header = () => {
         width={200}
         height={200}
         alt='profile_img' 
-        className='rounded-full w-60 aspect-[1/1] object-cover'/>
+        className='rounded-full w-54 aspect-[1/1] object-cover'/>
       </motion.div>
 
       <motion.h3 
