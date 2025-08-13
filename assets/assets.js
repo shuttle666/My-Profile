@@ -156,25 +156,35 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'Frontend project',
-        description: 'Web Design',
-        bgImage: '/work-1.png',
+        title: 'Word Clock',
+        description: 'React world clock with multi-timezone display, theme switching, and glassmorphism design.',
+        bgImage: '/WordClock.png',
+        technologies: [
+            { icon: assets.react, name: 'React' },
+        ],
+        link: 'https://github.com/shuttle666/World-clock',
+
     },
     {
-        title: 'Geo based app',
-        description: 'Mobile App',
-        bgImage: '/work-2.png',
+        title: 'Recipes Book',
+        description: 'A React-based recipe management app with real-time editing and modern UI design.',
+        bgImage: '/recipesBook.png',
+        technologies: [
+            { icon: assets.react, name: 'React' },
+        ],
+        link: 'https://github.com/shuttle666/Recipes',
     },
     {
-        title: 'Photography site',
-        description: 'Web Design',
-        bgImage: '/work-3.png',
+        title: 'Login and Register',
+        description: 'JWT-based login system with video streaming - Node.js, PostgreSQL, Docker.',
+        bgImage: '/loginRegister.png',
+        link: 'https://github.com/shuttle666/loginRegister',
     },
-    {
-        title: 'UI/UX designing',
-        description: 'UI/UX Design',
-        bgImage: '/work-4.png',
-    },
+    // {
+    //     title: 'UI/UX designing',
+    //     description: 'UI/UX Design',
+    //     bgImage: '/work-4.png',
+    // },
 ]
 
 export const serviceData = [
@@ -331,12 +341,14 @@ export const internshipData = {
     workType: 'Remote',
     responsibilities: [
         'Developed company backend management frontend pages using Vue.js.',
-        'Built the blog module for JobABC website, including frontend pages, backend CRUD operations, and database management.'
+        'Built the blog module for JobABC website, including frontend pages with nextjs, backend CRUD operations with nestjs, and database management with prisma and mySQL.'
+
     ],
     description: 'This internship provided me with hands-on experience in large-scale commercial project development. Most importantly, I gained valuable insights into the software development workflow in a corporate environment and developed essential soft skills for effective communication with colleagues and management.',
     technologies: [
         { icon: assets.typescript, name: 'TypeScript' },
         { icon: assets.vue, name: 'Vue.js' },
+        { icon: assets.nextjs, name: 'Next.js' },
         { icon: assets.nestjs, name: 'NestJS' },
         { icon: assets.prisma, name: 'Prisma' }
     ]

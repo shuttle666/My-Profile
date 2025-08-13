@@ -133,16 +133,27 @@ const Work = ({isDarkMode}) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             key={index}
-            className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group shadow-lg hover:shadow-xl transition-shadow duration-300'
+            className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group shadow-lg hover:shadow-xl transition-shadow duration-300 border-1'
             style={{backgroundImage: `url(${project.bgImage})`}}>
-                <div className='bg-white w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7'>
+                <div className='bg-white dark:bg-gray-800 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7 border-1'>
                     <div>
-                        <h2 className='font-semibold'>{project.title}</h2>
-                        <p className='text-sm text-gray-700'>{project.description}</p>
+                        <h2 className='font-semibold text-gray-900 dark:text-white'>{project.title}</h2>
+                        <p className='text-sm text-gray-700 dark:text-gray-300'>{project.description}</p>
                     </div>
-                    <div className='border rounded-full border-black w-9 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] group-hover:bg-lime-300 transition'>
-                        <Image src={assets.send_icon} alt='send icon' className='w-5'/>
-                    </div>
+                    <a 
+                      href={project.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className='border rounded-full border-black dark:border-white w-15 aspect-square flex items-center justify-center shadow-[2px_2px_0_#000] dark:shadow-[2px_2px_0_#fff] group-hover:bg-lime-300 transition hover:scale-110'
+                    >
+                        <Image 
+                          src={isDarkMode ? assets.github_dark : assets.github} 
+                          alt='GitHub link' 
+                          className='w-6'
+                          width={20}
+                          height={20}
+                        />
+                    </a>
                 </div>
             </motion.div>
         ))}
