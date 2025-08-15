@@ -156,13 +156,11 @@ export const assets = {
 
 export const workData = [
     {
-        title: 'Word Clock',
-        description: 'React world clock with multi-timezone display, theme switching, and glassmorphism design.',
-        bgImage: '/WordClock.png',
-        technologies: [
-            { icon: assets.react, name: 'React' },
-        ],
-        link: 'https://github.com/shuttle666/World-clock',
+        title: 'Three.js Demo',
+        description: 'Interactive 3D viewer built with Three.js featuring orbit controls and GUI panel.',
+        bgImage: '/threejs.png',
+
+        link: 'https://github.com/shuttle666/threejs',
 
     },
     {
@@ -179,6 +177,16 @@ export const workData = [
         description: 'JWT-based login system with video streaming - Node.js, PostgreSQL, Docker.',
         bgImage: '/loginRegister.png',
         link: 'https://github.com/shuttle666/loginRegister',
+    },
+    {
+        title: 'Word Clock',
+        description: 'React world clock with multi-timezone display, theme switching, and glassmorphism design.',
+        bgImage: '/WordClock.png',
+        technologies: [
+            { icon: assets.react, name: 'React' },
+        ],
+        link: 'https://github.com/shuttle666/World-clock',
+
     },
     // {
     //     title: 'UI/UX designing',
