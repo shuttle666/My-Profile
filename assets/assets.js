@@ -188,6 +188,16 @@ export const workData = [
         link: 'https://github.com/shuttle666/World-clock',
 
     },
+    {
+        title: 'Taxpal',
+        description: 'A responsive TaxPal website clone built with Next.js and React.',
+        bgImage: '/taxpal.png',
+        technologies: [
+            { icon: assets.react, name: 'React' },
+        ],
+        link: 'https://taxpal-app-ewa8l4-b515fe-13-54-49-177.traefik.me',
+
+    },
     // {
     //     title: 'UI/UX designing',
     //     description: 'UI/UX Design',
