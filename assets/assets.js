@@ -195,7 +195,7 @@ export const workData = [
         technologies: [
             { icon: assets.react, name: 'React' },
         ],
-        link: 'https://taxpal-app-ewa8l4-b515fe-13-54-49-177.traefik.me',
+        link: 'https://github.com/shuttle666/taxpal',
 
     },
     // {
@@ -218,7 +218,7 @@ export const infoList = [
     { icon: assets.edu_icon, iconDark: assets.edu_icon_dark, title: 'Education', description: 'Master of Computing, University of Adelaide.' }
 ];
 
-// 修改 frontendSkillsData - 添加Three.js
+// 前端
 export const frontendSkillsData = [
     {
         icon: assets.react,
@@ -262,11 +262,7 @@ export const frontendSkillsData = [
     }
 ];
 
-export const toolsData = [
-    assets.vscode, assets.firebase, assets.mongodb, assets.figma, assets.git
-];
-
-// 添加后端和数据库技能数据
+// 后端和数据库
 export const backendSkillsData = [
     {
         icon: assets.nodejs,
@@ -294,7 +290,7 @@ export const backendSkillsData = [
     }
 ];
 
-// 添加工具和DevOps技能数据 - 添加新的工具
+// 工具和DevOps
 export const toolsSkillsData = [
     {
         icon: assets.git,
