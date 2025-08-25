@@ -33,7 +33,7 @@ const Footer = ({isDarkMode}) => {
           transition={{ duration: 0.6, delay: 0.5 }}
           className='flex items-center'>
             <motion.a 
-              href="www.linkedin.com/in/wenduo-wang-cs" 
+              href="https://www.linkedin.com/in/wenduo-wang-cs" 
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
