@@ -336,10 +336,10 @@ export const toolsSkillsData = [
         icon: assets.claude,
         title: 'Claude'
     },
-    {
-        icon: assets.trae,
-        title: 'Trae'
-    },
+    // {
+    //     icon: assets.trae,
+    //     title: 'Trae'
+    // },
     {
         icon: assets.cursor,
         title: 'Cursor'
