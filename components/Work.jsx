@@ -154,8 +154,8 @@ const Work = ({isDarkMode}) => {
                           className='border rounded-full border-black dark:border-white flex-shrink-0 w-12 h-12 flex items-center justify-center shadow-[2px_2px_0_#000] dark:shadow-[2px_2px_0_#fff] group-hover:bg-lime-300 transition-all duration-300 hover:scale-110 relative z-10'
                         >
                             <Image 
-                              src={isDarkMode ? assets.github_dark : assets.github} 
-                              alt='GitHub link' 
+                              src={isDarkMode ? assets.arrow_icon_dark : assets.arrow_icon} 
+                              alt='Visit site' 
                               className='w-6 h-6'
                               width={24}
                               height={24}
@@ -171,7 +171,7 @@ const Work = ({isDarkMode}) => {
                             transition={{ duration: 0.2 }}
                             className='absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-3 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-lg whitespace-nowrap z-20 shadow-lg font-medium'
                           >
-                            Click to view on GitHub.
+                            Click to visit live site.
                           </motion.div>
                         )}
                     </div>
