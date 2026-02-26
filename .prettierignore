@@ -1,0 +1,13 @@
+node_modules
+.next
+.pnpm-store
+public/**/*.png
+public/**/*.jpg
+public/**/*.jpeg
+public/**/*.svg
+public/**/*.pdf
+assets/**/*.png
+assets/**/*.jpg
+assets/**/*.jpeg
+assets/**/*.svg
+app/favicon.ico

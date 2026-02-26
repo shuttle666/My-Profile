@@ -1,40 +1,51 @@
 import React from 'react'
 import Image from 'next/image'
-import { assets } from '@/assets/assets'
+import { assets } from '@/assets'
 import { motion } from "motion/react"
 
+const WEB3FORMS_ACCESS_KEY = '99d24df2-3578-40bf-9bbc-8a3dc1724159'
+
 const Contact = () => {
-  const [result, setResult] = React.useState("");
+  const [result, setResult] = React.useState("")
+  const [isSubmitting, setIsSubmitting] = React.useState(false)
 
   const onSubmit = async (event) => {
-    event.preventDefault();
-    setResult("Sending....");
-    const formData = new FormData(event.target);
+    event.preventDefault()
+    const formData = new FormData(event.target)
+    formData.append("access_key", WEB3FORMS_ACCESS_KEY)
 
-    formData.append("access_key", "99d24df2-3578-40bf-9bbc-8a3dc1724159");
+    try {
+      setIsSubmitting(true)
+      setResult("Sending...")
 
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData
-    });
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
 
-    const data = await response.json();
+      const data = await response.json()
 
-    if (data.success) {
-      setResult("Form Submitted Successfully");
-      event.target.reset();
-    } else {
-      console.log("Error", data);
-      setResult(data.message);
+      if (!response.ok || !data.success) {
+        setResult(data.message || "Failed to submit the form.")
+        return
+      }
+
+      setResult("Form submitted successfully.")
+      event.target.reset()
+    } catch (error) {
+      console.error("Form submission failed", error)
+      setResult("Network error. Please try again.")
+    } finally {
+      setIsSubmitting(false)
     }
-  };
+  }
 
   return (
     <motion.div
     initial={{ opacity: 0 }} 
     whileInView={{ opacity: 1 }} 
       transition={{ duration: 1 }} 
-    id='contact' className='w-full px-[12%] py-10 scroll-mt-20 bg-[url("/footer-bg-color.png")] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none'>
+    id='contact' className='w-full px-[12%] py-10 scroll-mt-20 bg-[url("/backgrounds/footer-bg-color.png")] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none'>
 
       <motion.h4 
       initial={{ y: -20, opacity: 0 }} 
@@ -91,7 +102,9 @@ const Contact = () => {
         transition={{ duration: 0.3 }}
         type='submit'
         className='py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover'
-        >Submit now <Image src={assets.right_arrow_white} alt='' className='w-4'/></motion.button>
+        disabled={isSubmitting}
+        aria-busy={isSubmitting}
+        >{isSubmitting ? 'Submitting...' : 'Submit now'} <Image src={assets.right_arrow_white} alt='' className='w-4'/></motion.button>
 
         <p className='mt-4'>{result}</p>
       </motion.form>

@@ -1,10 +1,12 @@
-import { assets, workData, internshipData } from '@/assets/assets'
+import { assets } from '@/assets'
+import { workData } from '@/content/projects'
+import { internshipData } from '@/content/internship'
 import Image from 'next/image'
 import React, { useState } from 'react'
 import { motion } from "motion/react"
 
 const Work = ({isDarkMode}) => {
-  const [hoveredProject, setHoveredProject] = useState(null);
+  const [hoveredProjectId, setHoveredProjectId] = useState(null);
   
   return (
     <motion.div
@@ -78,10 +80,10 @@ const Work = ({isDarkMode}) => {
         <div className='mb-6'>
           <h5 className='text-lg font-medium text-gray-900 dark:text-white mb-3'>Key Responsibilities:</h5>
           <ul className='space-y-2'>
-            {internshipData.responsibilities.map((item, index) => (
-              <li key={index} className='flex items-start gap-3 text-gray-700 dark:text-gray-300'>
+            {internshipData.responsibilities.map((item) => (
+              <li key={item.id} className='flex items-start gap-3 text-gray-700 dark:text-gray-300'>
                 <span className='w-2 h-2 bg-blue-500 rounded-full mt-3 flex-shrink-0'></span>
-                <span>{item}</span>
+                <span>{item.text}</span>
               </li>
             ))}
           </ul>
@@ -98,8 +100,8 @@ const Work = ({isDarkMode}) => {
         <div>
           <h5 className='text-lg font-medium text-gray-900 dark:text-white mb-3'>Technology Stack:</h5>
           <div className='flex flex-wrap gap-3'>
-            {internshipData.technologies.map((tech, index) => (
-              <div key={index} className='flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg'>
+            {internshipData.technologies.map((tech) => (
+              <div key={tech.id} className='flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg'>
                 <Image 
                   src={tech.icon} 
                   alt={tech.name}
@@ -127,14 +129,14 @@ const Work = ({isDarkMode}) => {
       <h3 className='text-2xl font-Ovo mb-8 text-center dark:text-white'>Projects</h3>
       
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-        {workData.map((project, index)=>(
+        {workData.map((project)=>(
             <motion.div
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            key={index}
+            key={project.id}
             className='aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group shadow-lg hover:shadow-xl transition-shadow duration-300 border-1'
             style={{backgroundImage: `url(${project.bgImage})`}}>
                 <div className='bg-white dark:bg-gray-800 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7 border-1'>
@@ -144,8 +146,8 @@ const Work = ({isDarkMode}) => {
                     </div>
                     <div 
                       className='relative'
-                      onMouseEnter={() => setHoveredProject(index)}
-                      onMouseLeave={() => setHoveredProject(null)}
+                      onMouseEnter={() => setHoveredProjectId(project.id)}
+                      onMouseLeave={() => setHoveredProjectId(null)}
                     >
                         <a 
                           href={project.link} 
@@ -163,7 +165,7 @@ const Work = ({isDarkMode}) => {
                         </a>
                         
                         {/* 即时显示的提示 */}
-                        {hoveredProject === index && (
+                        {hoveredProjectId === project.id && (
                           <motion.div 
                             initial={{ opacity: 0, y: 10, scale: 0.8 }}
                             animate={{ opacity: 1, y: 0, scale: 1 }}

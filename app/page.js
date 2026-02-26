@@ -10,36 +10,44 @@ import Work from '../components/Work'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
-export default function Home() {
+/** @typedef {import('@/types/domain').ThemeMode} ThemeMode */
 
-  const [isDarkMode, setIsDarkMode] = useState(false);
+export default function Home() {
+  const [isDarkMode, setIsDarkMode] = useState(false)
 
   useEffect(()=>{
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    const prefersDarkMode =
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+
+    if (prefersDarkMode) {
       setIsDarkMode(true)
-    }else{
+    } else {
       setIsDarkMode(false)
     }
   },[])
 
   useEffect(()=>{
-    if(isDarkMode){
-      document.documentElement.classList.add('dark');
-      localStorage.theme = 'dark';
-    }else{
-      document.documentElement.classList.remove('dark');
-      localStorage.theme = '';
+    /** @type {ThemeMode} */
+    const nextTheme = isDarkMode ? 'dark' : 'light'
+
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+      localStorage.theme = nextTheme
+    } else {
+      document.documentElement.classList.remove('dark')
+      localStorage.theme = ''
     }
   },[isDarkMode])
 
   return (
     <>
       <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
-      <Header isDarkMode={isDarkMode} />
+      <Header />
       <About isDarkMode={isDarkMode} />
       <Services isDarkMode={isDarkMode} />
       <Work isDarkMode={isDarkMode} />
-      <Contact isDarkMode={isDarkMode} />
+      <Contact />
       <Footer isDarkMode={isDarkMode} />
     </>
   );

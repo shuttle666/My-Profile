@@ -1,7 +1,8 @@
-import { assets } from '@/assets/assets'
+import { assets } from '@/assets'
 import Image from 'next/image'
 import React from 'react'
 import { motion } from "motion/react"
+import myface from '@/assets/images/profile/myface.jpg'
 
 const Header = () => {
   return (
@@ -12,7 +13,7 @@ const Header = () => {
       transition={{duration: 0.8, type: 'spring', stiffness: 100}}
       >
         <Image 
-        src={'/myface.jpg'}
+        src={myface}
         width={200}
         height={200}
         alt='profile_img' 
@@ -60,7 +61,7 @@ const Header = () => {
         initial={{y: 30, opacity: 0}}
         whileInView={{y: 0, opacity: 1}}
         transition={{duration: 0.6, delay: 0.9}}
-        href="/wenduoResume.pdf" download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>
+        href="/downloads/wenduoResume.pdf" download className='px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black'>
         My resume
         <Image src={assets.download_icon} alt='download_icon' className='w-4'/>
         </motion.a>

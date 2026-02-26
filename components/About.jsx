@@ -1,7 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
-import { assets, infoList, toolsData } from '@/assets/assets'
+import { infoList } from '@/content/skills'
 import { motion } from "motion/react"
+import myself from '@/assets/images/profile/myself.jpg'
 
 const About = ({isDarkMode}) => {
   return (
@@ -33,7 +34,7 @@ const About = ({isDarkMode}) => {
         transition={{duration: 0.6}}
         className='w-64 aspect-[3/4] sm:w-80 rounded-3xl max-w-none overflow-hidden'>
           <Image 
-          src={'/myself.jpg'} 
+          src={myself} 
           alt='user_image'
           width={600}
           height={800}
@@ -55,11 +56,11 @@ const About = ({isDarkMode}) => {
           whileInView={{opacity: 1}}
           transition={{duration: 0.8, delay: 0.7}}
           className='grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl'>
-            {infoList.map(({icon, iconDark, title, description}, index)=>(
+            {infoList.map(({id, icon, iconDark, title, description})=>(
               <motion.li 
               whileHover={{scale: 1.05}}
               className='border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50' 
-              key={index}>
+              key={id}>
 
                 <Image src={isDarkMode ? iconDark : icon} alt={title} className='w-10 mt-3'/>
                 <h3 className='my-4 font-semibold text-gray-700 dark:text-white'>{title}</h3>

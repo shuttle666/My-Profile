@@ -1,5 +1,5 @@
 import React from 'react'
-import { frontendSkillsData, backendSkillsData, toolsSkillsData } from '@/assets/assets'
+import { frontendSkillsData, backendSkillsData, toolsSkillsData } from '@/content/skills'
 import Image from 'next/image'
 import { motion } from "motion/react"
 
@@ -56,7 +56,7 @@ const Services = ({isDarkMode}) => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
             className='w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50'
-            key={index}>
+            key={skill.id}>
               <div className='flex items-center justify-center mb-3'>
                 <Image 
                   src={skill.icon} 
@@ -98,7 +98,7 @@ const Services = ({isDarkMode}) => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
             className='w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50'
-            key={index}>
+            key={skill.id}>
               <div className='flex items-center justify-center mb-3'>
                 <Image 
                   src={skill.icon} 
@@ -140,7 +140,7 @@ const Services = ({isDarkMode}) => {
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
             className='w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50'
-            key={index}>
+            key={skill.id}>
               <div className='flex items-center justify-center mb-3'>
                 <Image 
                   src={skill.icon} 
