@@ -5,6 +5,7 @@ A modern, responsive personal portfolio website built with Next.js to showcase m
 ## Purpose
 
 This portfolio serves as a digital showcase of my work as a full-stack developer, featuring:
+
 - Personal introduction and background
 - Technical skills and expertise
 - Project portfolio with detailed descriptions
@@ -14,12 +15,14 @@ This portfolio serves as a digital showcase of my work as a full-stack developer
 ## Tech Stack
 
 ### Frontend
+
 - **Next.js 16** - React framework with App Router
 - **React 19** - UI library
 - **Tailwind CSS 4** - Utility-first CSS framework
 - **Motion** - Animation library for smooth interactions
 
 ### Development Tools
+
 - **ESLint** - Code linting
 - **TypeScript (gradual adoption)** - Type-safe data and shared interfaces
 - **Prettier** - Code formatting baseline
@@ -27,6 +30,7 @@ This portfolio serves as a digital showcase of my work as a full-stack developer
 - **pnpm** - Package manager
 
 ### Deployment
+
 - **Vercel** - Hosting and deployment platform
 
 ## Features

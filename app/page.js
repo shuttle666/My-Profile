@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
@@ -15,19 +15,17 @@ import Footer from '../components/Footer'
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false)
 
-  useEffect(()=>{
+  useEffect(() => {
     const prefersDarkMode =
       localStorage.theme === 'dark' ||
       (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 
-    if (prefersDarkMode) {
-      setIsDarkMode(true)
-    } else {
-      setIsDarkMode(false)
-    }
-  },[])
+    // Theme preference can only be resolved from browser APIs after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setIsDarkMode(prefersDarkMode)
+  }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     /** @type {ThemeMode} */
     const nextTheme = isDarkMode ? 'dark' : 'light'
 
@@ -38,17 +36,17 @@ export default function Home() {
       document.documentElement.classList.remove('dark')
       localStorage.theme = ''
     }
-  },[isDarkMode])
+  }, [isDarkMode])
 
   return (
     <>
-      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode}/>
+      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
       <Header />
       <About isDarkMode={isDarkMode} />
-      <Services isDarkMode={isDarkMode} />
+      <Services />
       <Work isDarkMode={isDarkMode} />
       <Contact />
       <Footer isDarkMode={isDarkMode} />
     </>
-  );
+  )
 }
