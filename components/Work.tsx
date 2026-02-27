@@ -2,11 +2,15 @@ import { assets } from '@/assets'
 import { workData } from '@/content/projects'
 import { internshipData } from '@/content/internship'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { motion } from 'motion/react'
 
-const Work = ({ isDarkMode }) => {
-  const [hoveredProjectId, setHoveredProjectId] = useState(null)
+type WorkProps = {
+  isDarkMode: boolean
+}
+
+const Work = ({ isDarkMode }: WorkProps) => {
+  const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null)
 
   return (
     <motion.div

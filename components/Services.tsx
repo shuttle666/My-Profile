@@ -1,4 +1,3 @@
-import React from 'react'
 import { frontendSkillsData, backendSkillsData, toolsSkillsData } from '@/content/skills'
 import Image from 'next/image'
 import { motion } from 'motion/react'

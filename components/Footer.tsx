@@ -1,9 +1,12 @@
-import React from 'react'
 import { assets } from '@/assets'
 import Image from 'next/image'
 import { motion } from 'motion/react'
 
-const Footer = ({ isDarkMode }) => {
+type FooterProps = {
+  isDarkMode: boolean
+}
+
+const Footer = ({ isDarkMode }: FooterProps) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}

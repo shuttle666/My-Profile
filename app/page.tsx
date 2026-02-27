@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import type { ThemeMode } from '@/types/domain'
 
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
@@ -10,10 +11,8 @@ import Work from '../components/Work'
 import Contact from '../components/Contact'
 import Footer from '../components/Footer'
 
-/** @typedef {import('@/types/domain').ThemeMode} ThemeMode */
-
 export default function Home() {
-  const [isDarkMode, setIsDarkMode] = useState(false)
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
 
   useEffect(() => {
     const prefersDarkMode =
@@ -26,8 +25,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    /** @type {ThemeMode} */
-    const nextTheme = isDarkMode ? 'dark' : 'light'
+    const nextTheme: ThemeMode = isDarkMode ? 'dark' : 'light'
 
     if (isDarkMode) {
       document.documentElement.classList.add('dark')

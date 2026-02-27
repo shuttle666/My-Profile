@@ -2,22 +2,27 @@ import React from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets'
 
-const Navbar = ({ isDarkMode, setIsDarkMode }) => {
-  const sideMenuRef = React.useRef(null)
+type NavbarProps = {
+  isDarkMode: boolean
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
+  const sideMenuRef = React.useRef<HTMLUListElement | null>(null)
 
   const [isScrolled, setIsScrolled] = React.useState(false)
 
-  const openMenu = () => {
+  const openMenu = (): void => {
     if (!sideMenuRef.current) return
     sideMenuRef.current.style.transform = 'translateX(-16rem)'
   }
 
-  const closeMenu = () => {
+  const closeMenu = (): void => {
     if (!sideMenuRef.current) return
     sideMenuRef.current.style.transform = 'translateX(16rem)'
   }
 
-  const toggleDarkMode = () => {
+  const toggleDarkMode = (): void => {
     setIsDarkMode((prev) => !prev)
   }
 
@@ -79,7 +84,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
         </ul>
 
         <div className="flex items-center gap-4">
-          <button onClick={toggleDarkMode} aria-label="Toggle dark mode">
+          <button type="button" onClick={toggleDarkMode} aria-label="Toggle dark mode">
             <Image
               src={isDarkMode ? assets.sun_icon : assets.moon_icon}
               alt="moon_icon"
@@ -99,7 +104,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }) => {
             />
           </a>
 
-          <button className="block md:hidden ml-3" onClick={openMenu}>
+          <button type="button" className="block md:hidden ml-3" onClick={openMenu}>
             <Image
               src={isDarkMode ? assets.menu_white : assets.menu_black}
               alt="menu_black"

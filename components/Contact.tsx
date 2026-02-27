@@ -9,9 +9,10 @@ const Contact = () => {
   const [result, setResult] = React.useState('')
   const [isSubmitting, setIsSubmitting] = React.useState(false)
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const formData = new FormData(event.target)
+    const form = event.currentTarget
+    const formData = new FormData(form)
     formData.append('access_key', WEB3FORMS_ACCESS_KEY)
 
     try {
@@ -23,7 +24,7 @@ const Contact = () => {
         body: formData,
       })
 
-      const data = await response.json()
+      const data = (await response.json()) as { success?: boolean; message?: string }
 
       if (!response.ok || !data.success) {
         setResult(data.message || 'Failed to submit the form.')
@@ -31,7 +32,7 @@ const Contact = () => {
       }
 
       setResult('Form submitted successfully.')
-      event.target.reset()
+      form.reset()
     } catch (error) {
       console.error('Form submission failed', error)
       setResult('Network error. Please try again.')
@@ -110,7 +111,7 @@ const Contact = () => {
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 1.3, duration: 0.6 }}
-          rows="6"
+          rows={6}
           placeholder="Enter your message"
           required
           className="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover/30 dark:border-white/90"

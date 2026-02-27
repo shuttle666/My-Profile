@@ -1,10 +1,13 @@
-import React from 'react'
 import Image from 'next/image'
 import { infoList } from '@/content/skills'
 import { motion } from 'motion/react'
 import myself from '@/assets/images/profile/myself.jpg'
 
-const About = ({ isDarkMode }) => {
+type AboutProps = {
+  isDarkMode: boolean
+}
+
+const About = ({ isDarkMode }: AboutProps) => {
   return (
     <motion.div
       id="about"

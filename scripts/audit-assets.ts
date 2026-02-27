@@ -16,9 +16,9 @@ const textExtensions = new Set([
 ])
 const mediaExtensions = new Set(['.png', '.jpg', '.jpeg', '.svg', '.webp', '.gif', '.pdf', '.ico'])
 
-async function walk(dirPath) {
+async function walk(dirPath: string): Promise<string[]> {
   const entries = await fs.readdir(dirPath, { withFileTypes: true })
-  const files = []
+  const files: string[] = []
 
   for (const entry of entries) {
     const fullPath = path.join(dirPath, entry.name)
@@ -33,7 +33,7 @@ async function walk(dirPath) {
 }
 
 async function getScanFiles() {
-  const files = []
+  const files: string[] = []
 
   for (const target of scanDirs) {
     const fullPath = path.join(rootDir, target)
@@ -49,21 +49,21 @@ async function getScanFiles() {
   return files
 }
 
-async function getMediaFiles(baseDir) {
+async function getMediaFiles(baseDir: string): Promise<string[]> {
   const fullBaseDir = path.join(rootDir, baseDir)
   const allFiles = await walk(fullBaseDir)
   return allFiles.filter((filePath) => mediaExtensions.has(path.extname(filePath)))
 }
 
-function hasAnyReference(textCorpus, probes) {
+function hasAnyReference(textCorpus: string, probes: string[]): boolean {
   return probes.some((probe) => probe.length > 0 && textCorpus.includes(probe))
 }
 
-function toUnixPath(inputPath) {
+function toUnixPath(inputPath: string): string {
   return inputPath.split(path.sep).join('/')
 }
 
-async function main() {
+async function main(): Promise<void> {
   const scanFiles = await getScanFiles()
   const scanTexts = await Promise.all(scanFiles.map((filePath) => fs.readFile(filePath, 'utf8')))
   const textCorpus = scanTexts.join('\n')
@@ -126,7 +126,7 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch((error: unknown) => {
   console.error('assets:audit failed')
   console.error(error)
   process.exit(1)

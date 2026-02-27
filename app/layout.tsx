@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import { Outfit, Ovo } from 'next/font/google'
 import './globals.css'
 
@@ -11,12 +13,16 @@ const ovo = Ovo({
   weight: ['400'],
 })
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Profile - Wenduo',
   description: 'Used to showcase the skills and projects of Wenduo Wang.',
 }
 
-export default function RootLayout({ children }) {
+type RootLayoutProps = Readonly<{
+  children: ReactNode
+}>
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className="scroll-smooth dark" suppressHydrationWarning>
       <body
