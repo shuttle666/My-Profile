@@ -36,7 +36,7 @@ const Header = () => {
         transition={{ duration: 0.8, delay: 0.3 }}
         className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo"
       >
-        Aspiring Full-stack Developer in Australia.
+        Full-stack Developer in Australia.
       </motion.h1>
 
       <motion.p
@@ -45,8 +45,8 @@ const Header = () => {
         transition={{ duration: 0.6, delay: 0.5 }}
         className="max-w-2xl mx-auto font-Ovo"
       >
-        Passionate about creating innovative web solutions and continuously learning new
-        technologies.
+        Full Stack Developer specializing in JavaScript, TypeScript, React, and Node.js. Passionate
+        about building production-grade web applications and continuously learning new technologies.
       </motion.p>
 
       {/* contact me and download resume buttons */}

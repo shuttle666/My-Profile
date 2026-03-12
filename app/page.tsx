@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import type { ThemeMode } from '@/types/domain'
 
 import Navbar from '../components/Navbar'
@@ -13,32 +13,48 @@ import Footer from '../components/Footer'
 
 export default function Home() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(false)
+  const isManualChange = useRef(false)
 
   useEffect(() => {
-    const prefersDarkMode =
-      localStorage.theme === 'dark' ||
-      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
-    // Theme preference can only be resolved from browser APIs after mount.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setIsDarkMode(prefersDarkMode)
+    const storedTheme = localStorage.theme as string | undefined
+    const prefersDark = storedTheme === 'dark' || (storedTheme !== 'light' && mediaQuery.matches)
+
+    setIsDarkMode(prefersDark)
+    document.documentElement.classList.toggle('dark', prefersDark)
+
+    const handleSystemChange = (e: MediaQueryListEvent) => {
+      const stored = localStorage.theme as string | undefined
+      // Only follow system change when user hasn't set a manual preference
+      if (stored !== 'dark' && stored !== 'light') {
+        setIsDarkMode(e.matches)
+        document.documentElement.classList.toggle('dark', e.matches)
+      }
+    }
+
+    mediaQuery.addEventListener('change', handleSystemChange)
+    return () => mediaQuery.removeEventListener('change', handleSystemChange)
   }, [])
 
   useEffect(() => {
-    const nextTheme: ThemeMode = isDarkMode ? 'dark' : 'light'
+    // Only persist to localStorage when the user manually toggles the theme
+    if (!isManualChange.current) return
+    isManualChange.current = false
 
-    if (isDarkMode) {
-      document.documentElement.classList.add('dark')
-      localStorage.theme = nextTheme
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.theme = ''
-    }
+    const nextTheme: ThemeMode = isDarkMode ? 'dark' : 'light'
+    document.documentElement.classList.toggle('dark', isDarkMode)
+    localStorage.theme = nextTheme
   }, [isDarkMode])
+
+  const handleSetIsDarkMode: React.Dispatch<React.SetStateAction<boolean>> = (action) => {
+    isManualChange.current = true
+    setIsDarkMode(action)
+  }
 
   return (
     <>
-      <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+      <Navbar isDarkMode={isDarkMode} setIsDarkMode={handleSetIsDarkMode} />
       <Header />
       <About isDarkMode={isDarkMode} />
       <Services />

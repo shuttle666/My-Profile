@@ -1,6 +1,6 @@
 import { assets } from '@/assets'
 import { workData } from '@/content/projects'
-import { internshipData } from '@/content/internship'
+import { workExperienceData } from '@/content/internship'
 import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'motion/react'
@@ -58,88 +58,93 @@ const Work = ({ isDarkMode }: WorkProps) => {
       >
         <h3 className="text-2xl font-Ovo mb-8 text-center">Work Experience</h3>
 
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
-          className="bg-white dark:bg-darkTheme/20 rounded-xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-700"
-        >
-          {/* Company Header */}
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6">
-            <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-              <Image
-                src={internshipData.logo}
-                alt={internshipData.company}
-                width={80}
-                height={80}
-                className="object-contain"
-              />
-            </div>
-            <div className="flex-1">
-              <h4 className="text-xl font-Ovo text-gray-900 dark:text-white">
-                {internshipData.company}
-              </h4>
-              <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
-                {internshipData.position}
-              </p>
-              <div className="flex items-center gap-4 mt-2 text-sm text-gray-600 dark:text-gray-400">
-                <span>{internshipData.duration}</span>
-                <span className="">•</span>
-                <span>{internshipData.workType}</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Key Responsibilities */}
-          <div className="mb-6">
-            <h5 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
-              Key Responsibilities:
-            </h5>
-            <ul className="space-y-2">
-              {internshipData.responsibilities.map((item) => (
-                <li
-                  key={item.id}
-                  className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
-                >
-                  <span className="w-2 h-2 bg-blue-500 rounded-full mt-3 flex-shrink-0"></span>
-                  <span>{item.text}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Experience Insights */}
-          <div className="mb-6">
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-              {internshipData.description}
-            </p>
-          </div>
-
-          {/* Technology Stack */}
-          <div>
-            <h5 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
-              Technology Stack:
-            </h5>
-            <div className="flex flex-wrap gap-3">
-              {internshipData.technologies.map((tech) => (
-                <div
-                  key={tech.id}
-                  className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg"
-                >
+        <div className="flex flex-col gap-8">
+          {workExperienceData.map((experience) => (
+            <motion.div
+              key={experience.company}
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white dark:bg-darkTheme/20 rounded-xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-700"
+            >
+              {/* Company Header */}
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6">
+                <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
                   <Image
-                    src={tech.icon}
-                    alt={tech.name}
-                    width={20}
-                    height={20}
+                    src={experience.logo}
+                    alt={experience.company}
+                    width={80}
+                    height={80}
                     className="object-contain"
                   />
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {tech.name}
-                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
+                <div className="flex-1">
+                  <h4 className="text-xl font-Ovo text-gray-900 dark:text-white">
+                    {experience.company}
+                  </h4>
+                  <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
+                    {experience.position}
+                  </p>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    <span>{experience.duration}</span>
+                    <span className="">•</span>
+                    <span>{experience.workType}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Key Responsibilities */}
+              <div className="mb-6">
+                <h5 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                  Key Responsibilities:
+                </h5>
+                <ul className="space-y-2">
+                  {experience.responsibilities.map((item) => (
+                    <li
+                      key={item.id}
+                      className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
+                    >
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-3 flex-shrink-0"></span>
+                      <span>{item.text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Experience Description */}
+              <div className="mb-6">
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  {experience.description}
+                </p>
+              </div>
+
+              {/* Technology Stack */}
+              <div>
+                <h5 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                  Technology Stack:
+                </h5>
+                <div className="flex flex-wrap gap-3">
+                  {experience.technologies.map((tech) => (
+                    <div
+                      key={tech.id}
+                      className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg"
+                    >
+                      <Image
+                        src={tech.icon}
+                        alt={tech.name}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                        {tech.name}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
 
       {/* Projects part */}

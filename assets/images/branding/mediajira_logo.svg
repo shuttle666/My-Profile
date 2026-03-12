@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" rx="16" fill="#1E3A5F"/>
+  <text x="60" y="48" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#fff">Media</text>
+  <text x="60" y="78" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="22" fill="#4FC3F7">Jira</text>
+</svg>

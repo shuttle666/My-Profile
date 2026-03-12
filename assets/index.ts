@@ -35,6 +35,8 @@ import logo from './images/branding/logo.png'
 import logo_dark from './images/branding/logo_dark.png'
 import profile_img from './images/profile/profile-img.png'
 import soon_logo from './images/branding/soon_logo.jpg'
+import mediajira_logo from './images/branding/mediajira_logo.svg'
+import xunyou_logo from './images/branding/xunyou_logo.svg'
 
 import react from './icons/tech/react.svg'
 import javascript from './icons/tech/javascript.svg'
@@ -45,6 +47,7 @@ import tailwindcss from './icons/tech/tailwindcss.svg'
 import nextjs from './icons/tech/nextjs.svg'
 import python from './icons/tech/python.svg'
 import vue from './icons/tech/vuejs.svg'
+import django from './icons/tech/django.svg'
 import threejs from './icons/tech/threejs.svg'
 import vitejs from './icons/tech/vitejs.svg'
 import nodejs from './icons/tech/nodejs.svg'
@@ -53,6 +56,7 @@ import nestjs from './icons/tech/nestjs.svg'
 import prisma from './icons/tech/prisma.svg'
 import postgresql from './icons/tech/postgresql.svg'
 import mongodb from './icons/tech/mongodb.png'
+import mysql from './icons/tech/mysql.svg'
 import git from './icons/tech/git.png'
 import vscode from './icons/tech/vscode.png'
 import figma from './icons/tech/figma.png'
@@ -101,6 +105,8 @@ export const assets = {
   graphics_icon,
   profile_img,
   soon_logo,
+  mediajira_logo,
+  xunyou_logo,
 
   react,
   javascript,
@@ -111,6 +117,7 @@ export const assets = {
   nextjs,
   python,
   vue,
+  django,
   threejs,
   vitejs,
   nodejs,
@@ -119,6 +126,7 @@ export const assets = {
   prisma,
   postgresql,
   mongodb,
+  mysql,
   git,
   vscode,
   figma,

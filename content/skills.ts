@@ -38,7 +38,7 @@ export const infoList: InfoItem[] = [
     icon: assets.code_icon,
     iconDark: assets.code_icon_dark,
     title: 'Technical Skills',
-    description: 'React, Node.js, Next.js, Prisma and more.',
+    description: 'React, Node.js, Django, Next.js, Prisma and more.',
   },
   {
     id: 'projects',
@@ -73,9 +73,11 @@ export const backendSkillsData: SkillItem[] = [
   { id: 'nodejs', icon: assets.nodejs, title: 'Node.js' },
   { id: 'express', icon: assets.express, title: 'Express' },
   { id: 'nestjs', icon: assets.nestjs, title: 'NestJS' },
+  { id: 'django', icon: assets.django, title: 'Django' },
   { id: 'prisma', icon: assets.prisma, title: 'Prisma' },
   { id: 'postgresql', icon: assets.postgresql, title: 'PostgreSQL' },
   { id: 'mongodb', icon: assets.mongodb, title: 'MongoDB' },
+  { id: 'mysql', icon: assets.mysql, title: 'MySQL' },
 ]
 
 export const toolsSkillsData: SkillItem[] = [

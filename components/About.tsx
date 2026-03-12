@@ -64,11 +64,11 @@ const About = ({ isDarkMode }: AboutProps) => {
           className="flex-1"
         >
           <p className="mb-10 max-w-2xl font-Ovo">
-            I am a passionate IT student based in Australia, currently focusing on full-stack
-            development with a modern tech stack including React, Node.js, Next.js, and Prisma. As I
-            progress through my academic journey, I constantly seek opportunities to improve my
-            technical skills and deepen my understanding of software engineering, while remaining
-            curious about a wide range of fields.
+            I am a Full Stack Developer based in Australia, specializing in JavaScript, TypeScript,
+            React, and Node.js. With a Master of Computing and Innovation from the University of
+            Adelaide and hands-on experience building production-grade web applications, I am
+            passionate about creating innovative web solutions and continuously expanding my
+            technical expertise across the full stack.
           </p>
 
           <motion.ul
