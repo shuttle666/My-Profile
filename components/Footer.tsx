@@ -1,12 +1,12 @@
+'use client'
+
 import { assets } from '@/assets'
 import Image from 'next/image'
 import { motion } from 'motion/react'
 
-type FooterProps = {
-  isDarkMode: boolean
-}
+const currentYear = new Date().getFullYear()
 
-const Footer = ({ isDarkMode }: FooterProps) => {
+const Footer = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -22,10 +22,11 @@ const Footer = ({ isDarkMode }: FooterProps) => {
           transition={{ duration: 0.6, delay: 0.1 }}
           href="#top"
         >
+          <Image src={assets.logo} alt="Wenduo Wang" className="w-36 mx-auto mb-2 dark:hidden" />
           <Image
-            src={isDarkMode ? assets.logo_dark : assets.logo}
-            alt="logo"
-            className="w-36 mx-auto mb-2"
+            src={assets.logo_dark}
+            alt="Wenduo Wang"
+            className="hidden w-36 mx-auto mb-2 dark:block"
           />
         </motion.a>
 
@@ -51,11 +52,8 @@ const Footer = ({ isDarkMode }: FooterProps) => {
               transition={{ duration: 0.3 }}
               className="flex items-center ml-2 hover:text-blue-800 hover:underline transition-colors dark:hover:text-blue-400"
             >
-              <Image
-                src={isDarkMode ? assets.linkedin_dark : assets.linkedin}
-                alt="linkedin icon"
-                className="w-6 mr-2"
-              />
+              <Image src={assets.linkedin} alt="" className="w-6 mr-2 dark:hidden" />
+              <Image src={assets.linkedin_dark} alt="" className="hidden w-6 mr-2 dark:block" />
               LinkedIn
             </motion.a>
           </motion.div>
@@ -73,11 +71,8 @@ const Footer = ({ isDarkMode }: FooterProps) => {
               transition={{ duration: 0.3 }}
               className="flex items-center ml-2 hover:text-blue-800 hover:underline transition-colors dark:hover:text-blue-400"
             >
-              <Image
-                src={isDarkMode ? assets.mail_icon_dark : assets.mail_icon}
-                alt="mail icon"
-                className="w-6 mr-2"
-              />
+              <Image src={assets.mail_icon} alt="" className="w-6 mr-2 dark:hidden" />
+              <Image src={assets.mail_icon_dark} alt="" className="hidden w-6 mr-2 dark:block" />
               wenduohb@gmail.com
             </motion.a>
           </motion.div>
@@ -97,11 +92,8 @@ const Footer = ({ isDarkMode }: FooterProps) => {
               transition={{ duration: 0.3 }}
               className="flex items-center ml-2 hover:text-blue-800 hover:underline transition-colors dark:hover:text-blue-400"
             >
-              <Image
-                src={isDarkMode ? assets.github_dark : assets.github}
-                alt="github icon"
-                className="w-6 mr-2"
-              />
+              <Image src={assets.github} alt="" className="w-6 mr-2 dark:hidden" />
+              <Image src={assets.github_dark} alt="" className="hidden w-6 mr-2 dark:block" />
               GitHub
             </motion.a>
           </motion.div>
@@ -116,7 +108,7 @@ const Footer = ({ isDarkMode }: FooterProps) => {
         className="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-2 py-2"
       >
         <p className="text-sm text-gray-600 font-Ovo dark:text-white/40">
-          © 2024 Wenduo Wang. All rights reserved.
+          © {currentYear} Wenduo Wang. Built with Next.js.
         </p>
 
         <p className="text-sm text-gray-600 font-Ovo sm:mt-0 dark:text-white/40">

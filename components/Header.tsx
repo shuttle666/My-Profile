@@ -1,3 +1,5 @@
+'use client'
+
 import { assets } from '@/assets'
 import Image from 'next/image'
 import { motion } from 'motion/react'
@@ -15,7 +17,7 @@ const Header = () => {
           src={myface}
           width={200}
           height={200}
-          alt="profile_img"
+          alt="Wenduo Wang profile photo"
           className="rounded-full w-54 aspect-[1/1] object-cover"
         />
       </motion.div>
@@ -27,7 +29,7 @@ const Header = () => {
         className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo"
       >
         Hello, I am Wenduo Wang
-        <Image src={assets.hand_icon} alt="hand_icon" className="w-6" />
+        <Image src={assets.hand_icon} alt="" className="w-6" />
       </motion.h3>
 
       <motion.h1
@@ -59,7 +61,7 @@ const Header = () => {
           className="px-10 py-3 border rounded-full border-white bg-black text-white flex items-center gap-2 dark:bg-transparent"
         >
           Contact me
-          <Image src={assets.right_arrow_white} alt="right_arrow" className="w-4" />
+          <Image src={assets.right_arrow_white} alt="" className="w-4" />
         </motion.a>
 
         <motion.a
@@ -71,7 +73,7 @@ const Header = () => {
           className="px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black"
         >
           My resume
-          <Image src={assets.download_icon} alt="download_icon" className="w-4" />
+          <Image src={assets.download_icon} alt="" className="w-4" />
         </motion.a>
       </div>
     </div>

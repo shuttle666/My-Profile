@@ -1,13 +1,11 @@
+'use client'
+
 import Image from 'next/image'
 import { infoList } from '@/content/skills'
 import { motion } from 'motion/react'
 import myself from '@/assets/images/profile/myself.jpg'
 
-type AboutProps = {
-  isDarkMode: boolean
-}
-
-const About = ({ isDarkMode }: AboutProps) => {
+const About = () => {
   return (
     <motion.div
       id="about"
@@ -49,7 +47,7 @@ const About = ({ isDarkMode }: AboutProps) => {
         >
           <Image
             src={myself}
-            alt="user_image"
+            alt="Wenduo Wang portrait"
             width={600}
             height={800}
             className="w-full h-full object-cover object-[47%_center] rounded-3xl"
@@ -83,7 +81,8 @@ const About = ({ isDarkMode }: AboutProps) => {
                 className="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50"
                 key={id}
               >
-                <Image src={isDarkMode ? iconDark : icon} alt={title} className="w-10 mt-3" />
+                <Image src={icon} alt={title} className="w-10 mt-3 dark:hidden" />
+                <Image src={iconDark} alt={title} className="hidden w-10 mt-3 dark:block" />
                 <h3 className="my-4 font-semibold text-gray-700 dark:text-white">{title}</h3>
                 <p className="text-gray-600 text-sm dark:text-white/80">{description}</p>
               </motion.li>

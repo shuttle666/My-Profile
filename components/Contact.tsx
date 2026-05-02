@@ -1,9 +1,9 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
 import { assets } from '@/assets'
 import { motion } from 'motion/react'
-
-const WEB3FORMS_ACCESS_KEY = '99d24df2-3578-40bf-9bbc-8a3dc1724159'
 
 const Contact = () => {
   const [result, setResult] = React.useState('')
@@ -13,13 +13,12 @@ const Contact = () => {
     event.preventDefault()
     const form = event.currentTarget
     const formData = new FormData(form)
-    formData.append('access_key', WEB3FORMS_ACCESS_KEY)
 
     try {
       setIsSubmitting(true)
       setResult('Sending...')
 
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         body: formData,
       })
@@ -84,6 +83,15 @@ const Contact = () => {
         onSubmit={onSubmit}
         className="max-w-2xl mx-auto"
       >
+        <input
+          type="text"
+          name="company"
+          tabIndex={-1}
+          autoComplete="off"
+          className="hidden"
+          aria-hidden="true"
+        />
+
         <div className="grid grid-cols-auto gap-6 mt-10 mb-8">
           <motion.input
             initial={{ x: -50, opacity: 0 }}

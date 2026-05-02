@@ -1,36 +1,5 @@
 import { assets } from '@/assets'
-import type { InfoItem, ServiceItem, SkillItem } from '@/types/domain'
-
-export const serviceData: ServiceItem[] = [
-  {
-    id: 'web-design',
-    icon: assets.web_icon,
-    title: 'Web design',
-    description: 'Web development is the process of building, programming...',
-    link: '',
-  },
-  {
-    id: 'mobile-app',
-    icon: assets.mobile_icon,
-    title: 'Mobile app',
-    description: 'Mobile app development involves creating software for mobile devices...',
-    link: '',
-  },
-  {
-    id: 'ui-ux-design',
-    icon: assets.ui_icon,
-    title: 'UI/UX design',
-    description: 'UI/UX design focuses on creating a seamless user experience...',
-    link: '',
-  },
-  {
-    id: 'graphics-design',
-    icon: assets.graphics_icon,
-    title: 'Graphics design',
-    description: 'Creative design solutions to enhance visual communication...',
-    link: '',
-  },
-]
+import type { InfoItem, SkillItem } from '@/types/domain'
 
 export const infoList: InfoItem[] = [
   {
@@ -45,7 +14,7 @@ export const infoList: InfoItem[] = [
     icon: assets.project_icon,
     iconDark: assets.project_icon_dark,
     title: 'Projects',
-    description: 'Built more than 5 projects.',
+    description: 'Featured full-stack and frontend projects.',
   },
   {
     id: 'education',

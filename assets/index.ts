@@ -21,19 +21,10 @@ import menu_black from './images/ui/menu-black.png'
 import menu_white from './images/ui/menu-white.png'
 import close_black from './images/ui/close-black.png'
 import close_white from './images/ui/close-white.png'
-import web_icon from './images/ui/web-icon.png'
-import mobile_icon from './images/ui/mobile-icon.png'
-import ui_icon from './images/ui/ui-icon.png'
-import graphics_icon from './images/ui/graphics-icon.png'
-import right_arrow from './images/ui/right-arrow.png'
-import send_icon from './images/ui/send-icon.png'
-import right_arrow_bold from './images/ui/right-arrow-bold.png'
-import right_arrow_bold_dark from './images/ui/right-arrow-bold-dark.png'
 import mail_icon from './images/ui/mail_icon.png'
 import mail_icon_dark from './images/ui/mail_icon_dark.png'
 import logo from './images/branding/logo.png'
 import logo_dark from './images/branding/logo_dark.png'
-import profile_img from './images/profile/profile-img.png'
 import soon_logo from './images/branding/soon_logo.jpg'
 import mediajira_logo from './images/branding/mediajira_logo.svg'
 import xunyou_logo from './images/branding/xunyou_logo.svg'
@@ -46,7 +37,6 @@ import css from './icons/tech/css.svg'
 import tailwindcss from './icons/tech/tailwindcss.svg'
 import nextjs from './icons/tech/nextjs.svg'
 import python from './icons/tech/python.svg'
-import vue from './icons/tech/vuejs.svg'
 import django from './icons/tech/django.svg'
 import threejs from './icons/tech/threejs.svg'
 import vitejs from './icons/tech/vitejs.svg'
@@ -87,10 +77,6 @@ export const assets = {
   close_black,
   close_white,
   right_arrow_white,
-  right_arrow,
-  right_arrow_bold,
-  right_arrow_bold_dark,
-  send_icon,
   hand_icon,
   download_icon,
   code_icon,
@@ -99,11 +85,6 @@ export const assets = {
   edu_icon_dark,
   project_icon,
   project_icon_dark,
-  web_icon,
-  mobile_icon,
-  ui_icon,
-  graphics_icon,
-  profile_img,
   soon_logo,
   mediajira_logo,
   xunyou_logo,
@@ -116,7 +97,6 @@ export const assets = {
   tailwindcss,
   nextjs,
   python,
-  vue,
   django,
   threejs,
   vitejs,

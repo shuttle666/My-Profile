@@ -1,3 +1,5 @@
+'use client'
+
 import { assets } from '@/assets'
 import { workData } from '@/content/projects'
 import { workExperienceData } from '@/content/internship'
@@ -5,11 +7,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { motion } from 'motion/react'
 
-type WorkProps = {
-  isDarkMode: boolean
-}
-
-const Work = ({ isDarkMode }: WorkProps) => {
+const Work = () => {
   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null)
 
   return (
@@ -182,12 +180,20 @@ const Work = ({ isDarkMode }: WorkProps) => {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    aria-label={`Visit ${project.title}`}
                     className="border rounded-full border-black dark:border-white flex-shrink-0 w-12 h-12 flex items-center justify-center shadow-[2px_2px_0_#000] dark:shadow-[2px_2px_0_#fff] group-hover:bg-lime-300 transition-all duration-300 hover:scale-110 relative z-10"
                   >
                     <Image
-                      src={isDarkMode ? assets.arrow_icon_dark : assets.arrow_icon}
-                      alt="Visit site"
-                      className="w-6 h-6"
+                      src={assets.arrow_icon}
+                      alt=""
+                      className="w-6 h-6 dark:hidden"
+                      width={24}
+                      height={24}
+                    />
+                    <Image
+                      src={assets.arrow_icon_dark}
+                      alt=""
+                      className="hidden w-6 h-6 dark:block"
                       width={24}
                       height={24}
                     />
