@@ -8,7 +8,7 @@ const currentYear = new Date().getFullYear()
 
 const Footer = () => {
   return (
-    <motion.div
+    <motion.footer
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -115,7 +115,7 @@ const Footer = () => {
           &quot;Code with passion, create with purpose.&quot;
         </p>
       </motion.div>
-    </motion.div>
+    </motion.footer>
   )
 }
 

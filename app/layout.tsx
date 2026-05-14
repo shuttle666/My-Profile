@@ -3,11 +3,15 @@ import type { ReactNode } from 'react'
 import { Outfit, Ovo } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-const title = 'Wenduo Wang | Full-stack Developer'
-const description =
-  'Full-stack developer in Australia building React, Next.js, Node.js, and Django applications.'
+import {
+  personName,
+  profileJsonLd,
+  seoKeywords,
+  siteDescription,
+  siteName,
+  siteTitle,
+  siteUrl,
+} from './seo'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -21,16 +25,22 @@ const ovo = Ovo({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title,
-  description,
+  title: siteTitle,
+  description: siteDescription,
+  applicationName: siteName,
+  authors: [{ name: personName, url: siteUrl }],
+  creator: personName,
+  publisher: personName,
+  keywords: seoKeywords,
+  category: 'technology',
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title,
-    description,
+    title: siteTitle,
+    description: siteDescription,
     url: '/',
-    siteName: 'Wenduo Wang Portfolio',
+    siteName,
     images: [
       {
         url: '/og-image.png',
@@ -39,12 +49,13 @@ export const metadata: Metadata = {
         alt: 'Wenduo Wang portfolio preview',
       },
     ],
+    locale: 'en_AU',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title,
-    description,
+    title: siteTitle,
+    description: siteDescription,
     images: ['/og-image.png'],
   },
 }
@@ -72,6 +83,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   }
 })();`}
         </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
+        />
         {children}
       </body>
     </html>

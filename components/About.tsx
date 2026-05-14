@@ -7,7 +7,7 @@ import myself from '@/assets/images/profile/myself.jpg'
 
 const About = () => {
   return (
-    <motion.div
+    <motion.section
       id="about"
       className="w-full px-[12%] py-10 scroll-mt-20"
       initial={{ opacity: 0 }}
@@ -110,7 +110,7 @@ const About = () => {
           </motion.ul> */}
         </motion.div>
       </motion.div>
-    </motion.div>
+    </motion.section>
   )
 }
 

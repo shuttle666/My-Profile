@@ -11,7 +11,7 @@ const Work = () => {
   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null)
 
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -163,9 +163,15 @@ const Work = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               key={project.id}
-              className="aspect-square bg-no-repeat bg-cover bg-center rounded-lg relative cursor-pointer group shadow-lg hover:shadow-xl transition-shadow duration-300 border-1"
-              style={{ backgroundImage: `url(${project.bgImage})` }}
+              className="aspect-square rounded-lg relative cursor-pointer group shadow-lg hover:shadow-xl transition-shadow duration-300 border-1 overflow-hidden"
             >
+              <Image
+                src={project.bgImage}
+                alt={`${project.title} project preview: ${project.description}`}
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
               <div className="bg-white dark:bg-gray-800 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7 border-1">
                 <div>
                   <h2 className="font-semibold text-gray-900 dark:text-white">{project.title}</h2>
@@ -217,7 +223,7 @@ const Work = () => {
           ))}
         </div>
       </motion.div>
-    </motion.div>
+    </motion.section>
   )
 }
 

@@ -41,7 +41,7 @@ const Contact = () => {
   }
 
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -140,7 +140,7 @@ const Contact = () => {
 
         <p className="mt-4">{result}</p>
       </motion.form>
-    </motion.div>
+    </motion.section>
   )
 }
 

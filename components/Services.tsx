@@ -6,7 +6,7 @@ import { motion } from 'motion/react'
 
 const Services = () => {
   return (
-    <motion.div
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
@@ -173,7 +173,7 @@ const Services = () => {
           ))}
         </div>
       </motion.div>
-    </motion.div>
+    </motion.section>
   )
 }
 
