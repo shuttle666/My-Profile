@@ -9,23 +9,23 @@ const Services = () => {
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.35 }}
       id="services"
       className="w-full px-[12%] py-10 scroll-mt-20"
     >
       <motion.h4
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
+        transition={{ delay: 0.05, duration: 0.3 }}
         className="text-center mb-2 text-lg font-Ovo"
       >
         Technologies I Use
       </motion.h4>
 
       <motion.h2
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
+        transition={{ delay: 0.1, duration: 0.35 }}
         className="text-center text-5xl font-Ovo"
       >
         My Tech Stack
@@ -34,7 +34,7 @@ const Services = () => {
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
+        transition={{ delay: 0.15, duration: 0.35 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
       >
         Here are the technologies and tools I use to bring ideas to life. I&apos;m constantly
@@ -45,13 +45,13 @@ const Services = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.7, duration: 0.6 }}
+        transition={{ delay: 0.15, duration: 0.35 }}
         className="mb-16"
       >
         <motion.h3
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 10, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
+          transition={{ delay: 0.15, duration: 0.3 }}
           className="text-center text-2xl font-Ovo mb-8 text-gray-700 dark:text-white"
         >
           Frontend & Language
@@ -60,9 +60,9 @@ const Services = () => {
         <div className="flex flex-wrap justify-center gap-6">
           {frontendSkillsData.map((skill, index) => (
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
+              initial={{ y: 10, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
+              transition={{ delay: Math.min(index * 0.03, 0.18), duration: 0.3 }}
               className="w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50"
               key={skill.id}
             >
@@ -90,13 +90,13 @@ const Services = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.6 }}
+        transition={{ delay: 0.15, duration: 0.35 }}
         className="mb-16"
       >
         <motion.h3
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 10, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.9, duration: 0.5 }}
+          transition={{ delay: 0.15, duration: 0.3 }}
           className="text-center text-2xl font-Ovo mb-8 text-gray-700 dark:text-white"
         >
           Backend & Database
@@ -105,9 +105,9 @@ const Services = () => {
         <div className="flex flex-wrap justify-center gap-6">
           {backendSkillsData.map((skill, index) => (
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
+              initial={{ y: 10, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
+              transition={{ delay: Math.min(index * 0.03, 0.18), duration: 0.3 }}
               className="w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50"
               key={skill.id}
             >
@@ -135,13 +135,13 @@ const Services = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.6 }}
+        transition={{ delay: 0.15, duration: 0.35 }}
         className="mb-16"
       >
         <motion.h3
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 10, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
+          transition={{ delay: 0.15, duration: 0.3 }}
           className="text-center text-2xl font-Ovo mb-8 text-gray-700 dark:text-white"
         >
           Tools & DevOps
@@ -150,9 +150,9 @@ const Services = () => {
         <div className="flex flex-wrap justify-center gap-6">
           {toolsSkillsData.map((skill, index) => (
             <motion.div
-              initial={{ y: -20, opacity: 0 }}
+              initial={{ y: 10, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.5 + index * 0.1, duration: 0.5 }}
+              transition={{ delay: Math.min(index * 0.03, 0.18), duration: 0.3 }}
               className="w-32 h-32 border border-gray-400 rounded-lg flex flex-col items-center justify-center hover:shadow-black hover:bg-lightHover hover:-translate-y-1 hover:scale-105 duration-500 dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50"
               key={skill.id}
             >

@@ -12,20 +12,20 @@ const About = () => {
       className="w-full px-[12%] py-10 scroll-mt-20"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.35 }}
     >
       <motion.h4
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
+        transition={{ duration: 0.3, delay: 0.05 }}
         className="text-center mb-2 text-lg font-Ovo"
       >
         Introduction
       </motion.h4>
       <motion.h2
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.3 }}
+        transition={{ duration: 0.35, delay: 0.1 }}
         className="text-center text-5xl font-Ovo"
       >
         About me
@@ -35,14 +35,14 @@ const About = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.35 }}
         className="flex flex-col lg:flex-row items-center gap-20 my-20"
       >
         {/* 左侧照片 */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.35 }}
           className="w-64 aspect-[3/4] sm:w-80 rounded-3xl max-w-none overflow-hidden"
         >
           <Image
@@ -58,7 +58,7 @@ const About = () => {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.35, delay: 0.12 }}
           className="flex-1"
         >
           <p className="mb-10 max-w-2xl font-Ovo">
@@ -72,12 +72,12 @@ const About = () => {
           <motion.ul
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
+            transition={{ duration: 0.35, delay: 0.18 }}
             className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl"
           >
             {infoList.map(({ id, icon, iconDark, title, description }) => (
               <motion.li
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ y: -4 }}
                 className="border-[0.5px] border-gray-400 rounded-xl p-6 cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500 hover:shadow-black dark:border-white dark:hover:shadow-white dark:hover:bg-darkHover/50"
                 key={id}
               >

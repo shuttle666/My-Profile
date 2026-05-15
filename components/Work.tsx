@@ -14,23 +14,23 @@ const Work = () => {
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.35 }}
       id="work"
       className="w-full px-[12%] py-10 scroll-mt-20"
     >
       <motion.h4
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.5 }}
+        transition={{ delay: 0.05, duration: 0.3 }}
         className="text-center mb-2 text-lg font-Ovo"
       >
         My experience
       </motion.h4>
 
       <motion.h2
-        initial={{ y: -20, opacity: 0 }}
+        initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
+        transition={{ delay: 0.1, duration: 0.35 }}
         className="text-center text-5xl font-Ovo"
       >
         Work and Projects
@@ -39,7 +39,7 @@ const Work = () => {
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.5 }}
+        transition={{ delay: 0.15, duration: 0.35 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
       >
         Discover my professional journey through internship experiences and development projects
@@ -49,9 +49,9 @@ const Work = () => {
       {/* Work part */}
       {/* Internship Experience Section */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.6 }}
+        transition={{ delay: 0.15, duration: 0.35 }}
         className="mb-16"
       >
         <h3 className="text-2xl font-Ovo mb-8 text-center">Work Experience</h3>
@@ -60,8 +60,8 @@ const Work = () => {
           {workExperienceData.map((experience) => (
             <motion.div
               key={experience.company}
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.25 }}
               className="bg-white dark:bg-darkTheme/20 rounded-xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-700"
             >
               {/* Company Header */}
@@ -149,7 +149,7 @@ const Work = () => {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.9, duration: 0.6 }}
+        transition={{ delay: 0.15, duration: 0.35 }}
         className="my-16"
       >
         <h3 className="text-2xl font-Ovo mb-8 text-center dark:text-white">Projects</h3>
@@ -157,9 +157,9 @@ const Work = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {workData.map((project) => (
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.3 }}
-              initial={{ opacity: 0, y: 20 }}
+              whileHover={{ y: -6 }}
+              transition={{ duration: 0.25 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               key={project.id}
