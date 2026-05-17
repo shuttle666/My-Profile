@@ -5,76 +5,134 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import myface from '@/assets/images/profile/myface.jpg'
 
+const highlights = [
+  { label: 'Focus', value: 'Production-ready full-stack apps' },
+  { label: 'Stack', value: 'React / Node.js / Django / PostgreSQL' },
+  { label: 'Based in', value: 'Australia, open to software roles' },
+]
+
+const proofPoints = [
+  { value: '3+', label: 'industry experiences' },
+  { value: '4', label: 'featured projects' },
+  { value: 'Full-stack', label: 'frontend to deployment' },
+]
+
 const Header = () => {
   return (
-    <section className="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col justify-center items-center gap-4">
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0 }}
-        whileInView={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.45, type: 'spring', stiffness: 140, damping: 18 }}
-      >
-        <Image
-          src={myface}
-          width={200}
-          height={200}
-          alt="Wenduo Wang profile photo"
-          className="rounded-full w-54 aspect-[1/1] object-cover"
-        />
-      </motion.div>
+    <section className="relative min-h-screen overflow-hidden px-6 pt-32 pb-20 sm:px-10 lg:px-[8%]">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-[radial-gradient(circle_at_20%_20%,rgba(69,123,157,0.18),transparent_32%),linear-gradient(135deg,#f8fbff_0%,#ffffff_44%,#fff7ed_100%)] dark:bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.24),transparent_32%),linear-gradient(135deg,#090b12_0%,#11001f_52%,#19151f_100%)]" />
 
-      <motion.h3
-        initial={{ y: -10, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, delay: 0.05 }}
-        className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Ovo"
-      >
-        Hello, I am Wenduo Wang
-        <Image src={assets.hand_icon} alt="" className="w-6" />
-      </motion.h3>
-
-      <motion.h1
-        initial={{ y: -18, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.12 }}
-        className="text-3xl sm:text-6xl lg:text-[66px] font-Ovo"
-      >
-        Full-stack Developer in Australia.
-      </motion.h1>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.35, delay: 0.18 }}
-        className="max-w-2xl mx-auto font-Ovo"
-      >
-        Full Stack Developer specializing in JavaScript, TypeScript, React, and Node.js. Passionate
-        about building production-grade web applications and continuously learning new technologies.
-      </motion.p>
-
-      {/* contact me and download resume buttons */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-        <motion.a
-          initial={{ y: 14, opacity: 0 }}
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+        <motion.div
+          initial={{ y: 18, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.24 }}
-          href="#contact"
-          className="px-10 py-3 border rounded-full border-white bg-black text-white flex items-center gap-2 dark:bg-transparent"
+          transition={{ duration: 0.4 }}
+          viewport={{ once: true }}
+          className="max-w-3xl"
         >
-          Contact me
-          <Image src={assets.right_arrow_white} alt="" className="w-4" />
-        </motion.a>
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-black/10 bg-white/75 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm backdrop-blur dark:border-white/15 dark:bg-white/5 dark:text-white/80">
+            <span className="h-2 w-2 rounded-full bg-emerald-500" />
+            Available for full-stack opportunities
+          </div>
 
-        <motion.a
-          initial={{ y: 14, opacity: 0 }}
+          <p className="mb-4 flex items-center gap-2 text-lg text-gray-700 font-Ovo dark:text-white/75">
+            Hello, I am Wenduo Wang
+            <Image src={assets.hand_icon} alt="" className="w-5" />
+          </p>
+
+          <h1 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-normal text-gray-950 sm:text-6xl lg:text-[74px] dark:text-white">
+            I build reliable web apps from interface to deployment.
+          </h1>
+
+          <p className="mt-7 max-w-2xl text-base leading-8 text-gray-700 sm:text-lg dark:text-white/70">
+            Full-stack developer with hands-on experience across React, TypeScript, Django, Node.js,
+            databases, CI/CD, and cloud deployment. I care about clean product flows, maintainable
+            code, and software that feels calm to use.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+            <motion.a
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+              href="#work"
+              className="inline-flex items-center justify-center gap-3 rounded-md bg-gray-950 px-6 py-3 font-medium text-white shadow-lg shadow-gray-950/10 dark:bg-white dark:text-gray-950"
+            >
+              View selected work
+              <Image src={assets.right_arrow_white} alt="" className="w-4 dark:invert" />
+            </motion.a>
+
+            <motion.a
+              whileHover={{ y: -2 }}
+              transition={{ duration: 0.2 }}
+              href="/downloads/wenduoResume.pdf"
+              download
+              className="inline-flex items-center justify-center gap-3 rounded-md border border-gray-300 bg-white px-6 py-3 font-medium text-gray-900 dark:border-white/20 dark:bg-white/5 dark:text-white"
+            >
+              Download resume
+              <Image src={assets.download_icon} alt="" className="w-4 dark:invert" />
+            </motion.a>
+          </div>
+
+          <div className="mt-10 grid gap-3 sm:grid-cols-3">
+            {highlights.map((item) => (
+              <div key={item.label} className="border-l border-gray-300 pl-4 dark:border-white/20">
+                <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/40">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-gray-800 dark:text-white/80">
+                  {item.value}
+                </p>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ y: 24, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.28 }}
-          href="/downloads/wenduoResume.pdf"
-          download
-          className="px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 bg-white dark:text-black"
+          transition={{ duration: 0.45, delay: 0.08 }}
+          viewport={{ once: true }}
+          className="relative"
         >
-          My resume
-          <Image src={assets.download_icon} alt="" className="w-4" />
-        </motion.a>
+          <div className="rounded-[2rem] border border-gray-200 bg-white p-4 shadow-2xl shadow-gray-900/10 dark:border-white/10 dark:bg-white/5 dark:shadow-black/30">
+            <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-gray-100 dark:bg-white/5">
+              <Image
+                src={myface}
+                fill
+                sizes="(min-width: 1024px) 40vw, 90vw"
+                alt="Wenduo Wang profile photo"
+                className="object-cover object-[48%_center]"
+                priority
+              />
+            </div>
+
+            <div className="mt-4 grid grid-cols-3 gap-3">
+              {proofPoints.map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-2xl bg-gray-50 px-3 py-4 text-center dark:bg-black/20"
+                >
+                  <p className="text-lg font-semibold text-gray-950 dark:text-white">
+                    {item.value}
+                  </p>
+                  <p className="mt-1 text-xs leading-5 text-gray-600 dark:text-white/60">
+                    {item.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="absolute right-6 -bottom-6 left-6 rounded-2xl border border-gray-200 bg-white/95 p-5 shadow-xl shadow-gray-900/10 backdrop-blur dark:border-white/10 dark:bg-[#17101f]/95">
+            <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/40">
+              Featured direction
+            </p>
+            <p className="mt-2 text-sm leading-6 text-gray-800 dark:text-white/75">
+              Product-minded engineering for dashboards, workflow tools, API-backed apps, and
+              deployment-ready web systems.
+            </p>
+          </div>
+        </motion.div>
       </div>
     </section>
   )

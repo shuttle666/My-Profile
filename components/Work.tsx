@@ -4,225 +4,342 @@ import { assets } from '@/assets'
 import { workData } from '@/content/projects'
 import { workExperienceData } from '@/content/internship'
 import Image from 'next/image'
-import { useState } from 'react'
 import { motion } from 'motion/react'
 
-const Work = () => {
-  const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(null)
+const techIconMap: Record<string, { icon: typeof assets.react; invertInDark?: boolean }> = {
+  'Node.js': { icon: assets.nodejs },
+  PostgreSQL: { icon: assets.postgresql },
+  Docker: { icon: assets.docker },
+  JWT: { icon: assets.code_icon, invertInDark: true },
+  React: { icon: assets.react },
+  'UI design': { icon: assets.figma },
+  'State management': { icon: assets.code_icon, invertInDark: true },
+  'Next.js': { icon: assets.nextjs, invertInDark: true },
+  'Responsive UI': { icon: assets.tailwindcss },
+  'Three.js': { icon: assets.threejs, invertInDark: true },
+  Controls: { icon: assets.cursor },
+  Canvas: { icon: assets.javascript },
+}
 
+const projectDetails: Record<string, { role: string; result: string; stack: string[] }> = {
+  'login-register': {
+    role: 'Full-stack build',
+    result: 'Authentication, protected flows, PostgreSQL persistence, Dockerized deployment.',
+    stack: ['Node.js', 'PostgreSQL', 'Docker', 'JWT'],
+  },
+  'recipes-book': {
+    role: 'Frontend product',
+    result: 'Recipe management flow with real-time editing and a clean, responsive interface.',
+    stack: ['React', 'UI design', 'State management'],
+  },
+  taxpal: {
+    role: 'Responsive build',
+    result: 'Next.js marketing interface focused on layout accuracy and component reuse.',
+    stack: ['Next.js', 'React', 'Responsive UI'],
+  },
+  'threejs-demo': {
+    role: 'Interactive prototype',
+    result: '3D viewer with orbit controls and a GUI panel for experimenting with scene settings.',
+    stack: ['Three.js', 'Controls', 'Canvas'],
+  },
+}
+
+const [featuredProject, ...secondaryProjects] = workData
+
+const renderStackTag = (item: string, size: 'base' | 'small' = 'base') => {
+  const tech = techIconMap[item] ?? { icon: assets.code_icon, invertInDark: true }
+  const isSmall = size === 'small'
+
+  return (
+    <span
+      key={item}
+      className={`inline-flex items-center gap-2 rounded-md bg-gray-100 text-gray-700 dark:bg-white/[0.08] dark:text-white/70 ${
+        isSmall ? 'px-2.5 py-1.5 text-xs' : 'px-3 py-2 text-sm'
+      }`}
+    >
+      <Image
+        src={tech.icon}
+        alt=""
+        width={isSmall ? 14 : 16}
+        height={isSmall ? 14 : 16}
+        className={`${isSmall ? 'h-3.5 w-3.5' : 'h-4 w-4'} object-contain ${
+          tech.invertInDark ? 'dark:invert' : ''
+        }`}
+      />
+      {item}
+    </span>
+  )
+}
+
+const Work = () => {
   return (
     <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.35 }}
       id="work"
-      className="w-full px-[12%] py-10 scroll-mt-20"
+      className="w-full scroll-mt-20 px-6 py-24 sm:px-10 lg:px-[8%]"
     >
-      <motion.h4
-        initial={{ y: -10, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.05, duration: 0.3 }}
-        className="text-center mb-2 text-lg font-Ovo"
-      >
-        My experience
-      </motion.h4>
-
-      <motion.h2
-        initial={{ y: -10, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        transition={{ delay: 0.1, duration: 0.35 }}
-        className="text-center text-5xl font-Ovo"
-      >
-        Work and Projects
-      </motion.h2>
-
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.15, duration: 0.35 }}
-        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
-      >
-        Discover my professional journey through internship experiences and development projects
-        that showcase my technical skills and growth.
-      </motion.p>
-
-      {/* Work part */}
-      {/* Internship Experience Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.15, duration: 0.35 }}
-        className="mb-16"
-      >
-        <h3 className="text-2xl font-Ovo mb-8 text-center">Work Experience</h3>
-
-        <div className="flex flex-col gap-8">
-          {workExperienceData.map((experience) => (
-            <motion.div
-              key={experience.company}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.25 }}
-              className="bg-white dark:bg-darkTheme/20 rounded-xl p-4 sm:p-6 lg:p-8 shadow-lg border border-gray-200 dark:border-gray-700"
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+          <div>
+            <motion.p
+              initial={{ y: -10, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.05, duration: 0.3 }}
+              className="text-sm font-semibold tracking-[0.22em] text-blue-700 uppercase dark:text-blue-300"
             >
-              {/* Company Header */}
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6">
-                <div className="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
-                  <Image
-                    src={experience.logo}
-                    alt={experience.company}
-                    width={80}
-                    height={80}
-                    className="object-contain"
-                  />
+              Selected work
+            </motion.p>
+
+            <motion.h2
+              initial={{ y: -10, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.1, duration: 0.35 }}
+              className="mt-4 text-4xl leading-tight font-semibold text-gray-950 sm:text-5xl dark:text-white"
+            >
+              Projects that show how I think, build, and ship.
+            </motion.h2>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.15, duration: 0.35 }}
+            className="max-w-2xl text-base leading-8 text-gray-600 lg:justify-self-end dark:text-white/60"
+          >
+            These are not just screenshots. Each project points to a part of my engineering range:
+            auth systems, product UI, responsive implementation, and interactive frontend work.
+          </motion.p>
+        </div>
+
+        {featuredProject && (
+          <motion.article
+            initial={{ y: 18, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.12, duration: 0.4 }}
+            viewport={{ once: true }}
+            className="mt-14 grid overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl shadow-gray-900/[0.08] lg:grid-cols-[1.08fr_0.92fr] dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20"
+          >
+            <a
+              href={featuredProject.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative block min-h-[360px] overflow-hidden bg-gray-100 dark:bg-white/5"
+              aria-label={`Visit ${featuredProject.title}`}
+            >
+              <Image
+                src={featuredProject.bgImage}
+                alt={`${featuredProject.title} project preview`}
+                fill
+                sizes="(min-width: 1024px) 56vw, 100vw"
+                className="object-cover"
+                priority
+              />
+            </a>
+
+            <div className="flex flex-col justify-between p-7 sm:p-10">
+              <div>
+                <div className="mb-5 inline-flex rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-800 dark:border-blue-400/20 dark:bg-blue-400/10 dark:text-blue-200">
+                  Featured case
                 </div>
-                <div className="flex-1">
-                  <h4 className="text-xl font-Ovo text-gray-900 dark:text-white">
-                    {experience.company}
-                  </h4>
-                  <p className="text-lg text-gray-700 dark:text-gray-300 font-medium">
-                    {experience.position}
-                  </p>
-                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    <span>{experience.duration}</span>
-                    <span className="">•</span>
-                    <span>{experience.workType}</span>
+
+                <h3 className="text-3xl leading-tight font-semibold text-gray-950 dark:text-white">
+                  {featuredProject.title}
+                </h3>
+                <p className="mt-4 text-base leading-8 text-gray-600 dark:text-white/60">
+                  {featuredProject.description}
+                </p>
+
+                <div className="mt-7 grid gap-4">
+                  <div>
+                    <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/40">
+                      Role
+                    </p>
+                    <p className="mt-2 text-gray-900 dark:text-white/80">
+                      {projectDetails[featuredProject.id]?.role}
+                    </p>
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/40">
+                      Outcome
+                    </p>
+                    <p className="mt-2 text-gray-700 dark:text-white/60">
+                      {projectDetails[featuredProject.id]?.result}
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {/* Key Responsibilities */}
-              <div className="mb-6">
-                <h5 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
-                  Key Responsibilities:
-                </h5>
-                <ul className="space-y-2">
-                  {experience.responsibilities.map((item) => (
-                    <li
-                      key={item.id}
-                      className="flex items-start gap-3 text-gray-700 dark:text-gray-300"
-                    >
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mt-3 flex-shrink-0"></span>
-                      <span>{item.text}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Experience Description */}
-              <div className="mb-6">
-                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-                  {experience.description}
-                </p>
-              </div>
-
-              {/* Technology Stack */}
-              <div>
-                <h5 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
-                  Technology Stack:
-                </h5>
-                <div className="flex flex-wrap gap-3">
-                  {experience.technologies.map((tech) => (
-                    <div
-                      key={tech.id}
-                      className="flex items-center gap-2 bg-gray-100 dark:bg-gray-800 px-3 py-2 rounded-lg"
-                    >
-                      <Image
-                        src={tech.icon}
-                        alt={tech.name}
-                        width={20}
-                        height={20}
-                        className="object-contain"
-                      />
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                        {tech.name}
-                      </span>
-                    </div>
-                  ))}
+              <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex flex-1 flex-wrap gap-2">
+                  {projectDetails[featuredProject.id]?.stack.map((item) => renderStackTag(item))}
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </motion.div>
 
-      {/* Projects part */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.15, duration: 0.35 }}
-        className="my-16"
-      >
-        <h3 className="text-2xl font-Ovo mb-8 text-center dark:text-white">Projects</h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {workData.map((project) => (
-            <motion.div
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.25 }}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              key={project.id}
-              className="aspect-square rounded-lg relative cursor-pointer group shadow-lg hover:shadow-xl transition-shadow duration-300 border-1 overflow-hidden"
-            >
-              <Image
-                src={project.bgImage}
-                alt={`${project.title} project preview: ${project.description}`}
-                fill
-                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                className="object-cover"
-              />
-              <div className="bg-white dark:bg-gray-800 w-10/12 rounded-md absolute bottom-5 left-1/2 -translate-x-1/2 py-3 px-5 flex items-center justify-between duration-500 group-hover:bottom-7 border-1">
-                <div>
-                  <h2 className="font-semibold text-gray-900 dark:text-white">{project.title}</h2>
-                  <p className="text-sm text-gray-700 dark:text-gray-300">{project.description}</p>
-                </div>
-                <div
-                  className="relative"
-                  onMouseEnter={() => setHoveredProjectId(project.id)}
-                  onMouseLeave={() => setHoveredProjectId(null)}
+                <a
+                  href={featuredProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex w-max shrink-0 items-center justify-center gap-3 rounded-md bg-gray-950 px-5 py-3 font-medium text-white shadow-lg shadow-gray-950/10 transition-colors duration-300 hover:bg-[#e7eef5] hover:text-gray-950 dark:bg-white dark:text-gray-950 dark:shadow-black/20 dark:hover:bg-[#e7eef5]"
                 >
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Visit ${project.title}`}
-                    className="border rounded-full border-black dark:border-white flex-shrink-0 w-12 h-12 flex items-center justify-center shadow-[2px_2px_0_#000] dark:shadow-[2px_2px_0_#fff] group-hover:bg-lime-300 transition-all duration-300 hover:scale-110 relative z-10"
-                  >
-                    <Image
-                      src={assets.arrow_icon}
-                      alt=""
-                      className="w-6 h-6 dark:hidden"
-                      width={24}
-                      height={24}
-                    />
-                    <Image
-                      src={assets.arrow_icon_dark}
-                      alt=""
-                      className="hidden w-6 h-6 dark:block"
-                      width={24}
-                      height={24}
-                    />
-                  </a>
+                  View live project
+                  <Image
+                    src={assets.right_arrow_white}
+                    alt=""
+                    className="w-4 transition duration-300 group-hover:translate-x-1 group-hover:invert dark:invert"
+                  />
+                </a>
+              </div>
+            </div>
+          </motion.article>
+        )}
 
-                  {/* 即时显示的提示 */}
-                  {hoveredProjectId === project.id && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.8 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-3 px-3 py-2 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 text-sm rounded-lg whitespace-nowrap z-20 shadow-lg font-medium"
-                    >
-                      Click to visit live site.
-                    </motion.div>
-                  )}
+        <div className="mt-8 grid gap-5 md:grid-cols-3">
+          {secondaryProjects.map((project, index) => (
+            <motion.a
+              key={project.id}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`View ${project.title}`}
+              initial={{ y: 16, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              transition={{ delay: Math.min(index * 0.05, 0.18), duration: 0.35 }}
+              viewport={{ once: true }}
+              className="group relative block overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg shadow-gray-900/5 outline-none transition duration-300 hover:shadow-xl hover:shadow-gray-900/10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-4 dark:border-white/10 dark:bg-white/[0.04] dark:focus-visible:ring-offset-darkTheme"
+            >
+              <div className="relative block aspect-[4/3] overflow-hidden bg-gray-100 dark:bg-white/5">
+                <Image
+                  src={project.bgImage}
+                  alt={`${project.title} project preview`}
+                  fill
+                  sizes="(min-width: 768px) 33vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="p-6">
+                <p className="text-sm font-medium text-blue-700 dark:text-blue-300">
+                  {projectDetails[project.id]?.role}
+                </p>
+                <h3 className="mt-2 text-xl font-semibold text-gray-950 dark:text-white">
+                  {project.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-white/60">
+                  {projectDetails[project.id]?.result || project.description}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {projectDetails[project.id]?.stack.map((item) => renderStackTag(item, 'small'))}
                 </div>
               </div>
-            </motion.div>
+
+              <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/55 opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-gray-950/55">
+                <span className="rounded-full bg-gray-950 px-6 py-3 text-sm font-semibold tracking-[0.16em] text-white uppercase shadow-xl shadow-gray-950/20 dark:bg-white dark:text-gray-950">
+                  View
+                </span>
+              </div>
+            </motion.a>
           ))}
         </div>
-      </motion.div>
+
+        <div className="mt-24 grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
+          <div>
+            <p className="text-sm font-semibold tracking-[0.22em] text-blue-700 uppercase dark:text-blue-300">
+              Experience
+            </p>
+            <h3 className="mt-4 text-3xl leading-tight font-semibold text-gray-950 dark:text-white">
+              A practical path through product teams and client work.
+            </h3>
+            <p className="mt-5 text-base leading-8 text-gray-600 dark:text-white/60">
+              My experience spans campaign platforms, recruitment workflows, enterprise software,
+              and the everyday habits of shipping in teams.
+            </p>
+          </div>
+
+          <div className="relative border-l border-gray-200 pl-6 dark:border-white/10">
+            {workExperienceData.map((experience, index) => (
+              <motion.article
+                key={experience.company}
+                initial={{ x: 16, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ delay: Math.min(index * 0.06, 0.18), duration: 0.35 }}
+                viewport={{ once: true }}
+                className="relative pb-10 last:pb-0"
+              >
+                <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full border-2 border-white bg-blue-600 dark:border-darkTheme" />
+
+                <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg shadow-gray-900/5 dark:border-white/10 dark:bg-white/[0.04]">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-gray-50 p-2 dark:bg-white/[0.08]">
+                      <Image
+                        src={experience.logo}
+                        alt={experience.company}
+                        width={48}
+                        height={48}
+                        className="h-full w-full object-contain"
+                      />
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <div className="flex flex-col gap-2 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                          <h4 className="text-xl font-semibold text-gray-950 dark:text-white">
+                            {experience.position}
+                          </h4>
+                          <p className="mt-1 text-gray-700 dark:text-white/60">
+                            {experience.company}
+                          </p>
+                        </div>
+                        <p className="text-sm text-gray-500 dark:text-white/40">
+                          {experience.duration} / {experience.workType}
+                        </p>
+                      </div>
+
+                      <p className="mt-4 text-sm leading-7 text-gray-600 dark:text-white/60">
+                        {experience.description}
+                      </p>
+
+                      <ul className="mt-5 grid gap-2">
+                        {experience.responsibilities.slice(0, 3).map((item) => (
+                          <li
+                            key={item.id}
+                            className="flex gap-3 text-sm leading-7 text-gray-700 dark:text-white/70"
+                          >
+                            <span className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600" />
+                            {item.text}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {experience.technologies.map((tech) => (
+                          <span
+                            key={tech.id}
+                            className="inline-flex items-center gap-2 rounded-md bg-gray-100 px-2.5 py-1.5 text-xs text-gray-700 dark:bg-white/[0.08] dark:text-white/70"
+                          >
+                            <Image
+                              src={tech.icon}
+                              alt=""
+                              width={16}
+                              height={16}
+                              className={`h-4 w-4 object-contain ${
+                                ['express', 'github'].includes(tech.id) ? 'dark:invert' : ''
+                              }`}
+                            />
+                            {tech.name}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </div>
     </motion.section>
   )
 }

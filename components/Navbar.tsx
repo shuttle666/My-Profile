@@ -68,12 +68,12 @@ const Navbar = () => {
           </li>
           <li>
             <a className="font-Ovo" href="#services">
-              Tech Stack
+              Capabilities
             </a>
           </li>
           <li>
             <a className="font-Ovo" href="#work">
-              Projects
+              Work
             </a>
           </li>
           <li>
@@ -146,12 +146,12 @@ const Navbar = () => {
           </li>
           <li>
             <a className="font-Ovo" onClick={closeMenu} href="#services">
-              Tech Stack
+              Capabilities
             </a>
           </li>
           <li>
             <a className="font-Ovo" onClick={closeMenu} href="#work">
-              Projects
+              Work
             </a>
           </li>
           <li>
