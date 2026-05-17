@@ -16,6 +16,30 @@
   --grid-template-columns-auto: repeat(auto-fit, minmax(200px, 1fr));
 }
 
+html {
+  background: #f8fbff;
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 6%, rgba(69, 123, 157, 0.1), transparent 30rem),
+    radial-gradient(circle at 92% 10%, rgba(250, 204, 21, 0.08), transparent 28rem),
+    linear-gradient(180deg, #f8fbff 0%, #ffffff 38%, #f8fafc 74%, #ffffff 100%);
+  background-attachment: fixed;
+}
+
+html.dark {
+  background: #11001f;
+}
+
+html.dark body {
+  background:
+    radial-gradient(circle at 12% 6%, rgba(59, 130, 246, 0.18), transparent 30rem),
+    radial-gradient(circle at 92% 10%, rgba(168, 85, 247, 0.14), transparent 28rem),
+    linear-gradient(180deg, #090b12 0%, #11001f 46%, #15121d 100%);
+  background-attachment: fixed;
+}
+
 /* * {
   font-family: Outfit;
 } */

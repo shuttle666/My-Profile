@@ -4,7 +4,7 @@ import { assets } from '@/assets'
 import { workData } from '@/content/projects'
 import { workExperienceData } from '@/content/internship'
 import Image from 'next/image'
-import { motion } from 'motion/react'
+import { motion, type Variants } from 'motion/react'
 
 const techIconMap: Record<string, { icon: typeof assets.react; invertInDark?: boolean }> = {
   'Node.js': { icon: assets.nodejs },
@@ -45,6 +45,37 @@ const projectDetails: Record<string, { role: string; result: string; stack: stri
 }
 
 const [featuredProject, ...secondaryProjects] = workData
+
+const revealViewport = { once: true, amount: 0.18 }
+
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.08,
+    },
+  },
+}
+
+const cardReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 26,
+    scale: 0.98,
+    filter: 'blur(8px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.45,
+      ease: 'easeOut',
+    },
+  },
+}
 
 const renderStackTag = (item: string, size: 'base' | 'small' = 'base') => {
   const tech = techIconMap[item] ?? { icon: assets.code_icon, invertInDark: true }
@@ -115,10 +146,10 @@ const Work = () => {
 
         {featuredProject && (
           <motion.article
-            initial={{ y: 18, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.12, duration: 0.4 }}
-            viewport={{ once: true }}
+            variants={cardReveal}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
             className="mt-14 grid overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl shadow-gray-900/[0.08] lg:grid-cols-[1.08fr_0.92fr] dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20"
           >
             <a
@@ -195,18 +226,21 @@ const Work = () => {
           </motion.article>
         )}
 
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {secondaryProjects.map((project, index) => (
+        <motion.div
+          className="mt-8 grid gap-5 md:grid-cols-3"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
+        >
+          {secondaryProjects.map((project) => (
             <motion.a
               key={project.id}
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`View ${project.title}`}
-              initial={{ y: 16, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: Math.min(index * 0.05, 0.18), duration: 0.35 }}
-              viewport={{ once: true }}
+              variants={cardReveal}
               className="group relative block overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-lg shadow-gray-900/5 outline-none transition duration-300 hover:shadow-xl hover:shadow-gray-900/10 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-4 dark:border-white/10 dark:bg-white/[0.04] dark:focus-visible:ring-offset-darkTheme"
             >
               <div className="relative block aspect-[4/3] overflow-hidden bg-gray-100 dark:bg-white/5">
@@ -242,7 +276,7 @@ const Work = () => {
               </div>
             </motion.a>
           ))}
-        </div>
+        </motion.div>
 
         <div className="mt-24 grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
           <div>
@@ -258,14 +292,17 @@ const Work = () => {
             </p>
           </div>
 
-          <div className="relative border-l border-gray-200 pl-6 dark:border-white/10">
-            {workExperienceData.map((experience, index) => (
+          <motion.div
+            className="relative border-l border-gray-200 pl-6 dark:border-white/10"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+          >
+            {workExperienceData.map((experience) => (
               <motion.article
                 key={experience.company}
-                initial={{ x: 16, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                transition={{ delay: Math.min(index * 0.06, 0.18), duration: 0.35 }}
-                viewport={{ once: true }}
+                variants={cardReveal}
                 className="relative pb-10 last:pb-0"
               >
                 <span className="absolute -left-[31px] top-1 h-3 w-3 rounded-full border-2 border-white bg-blue-600 dark:border-darkTheme" />
@@ -337,7 +374,7 @@ const Work = () => {
                 </div>
               </motion.article>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </motion.section>

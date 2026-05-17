@@ -2,7 +2,7 @@
 
 import { frontendSkillsData, backendSkillsData, toolsSkillsData } from '@/content/skills'
 import Image from 'next/image'
-import { motion } from 'motion/react'
+import { motion, type Variants } from 'motion/react'
 
 const capabilityCards = [
   {
@@ -48,6 +48,46 @@ const supportingStack = [
   ...toolsSkillsData.filter((skill) => ['figma', 'sealos', 'claude'].includes(skill.id)),
 ]
 
+const revealViewport = { once: true, amount: 0.18 }
+
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.08,
+    },
+  },
+}
+
+const cardReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 26,
+    scale: 0.98,
+    filter: 'blur(8px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.45,
+      ease: 'easeOut',
+    },
+  },
+}
+
+const chipReveal: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: 'easeOut' },
+  },
+}
+
 const Services = () => {
   return (
     <motion.section
@@ -90,14 +130,17 @@ const Services = () => {
           </motion.p>
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <motion.div
+          className="mt-14 grid gap-5 md:grid-cols-2"
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
+        >
           {capabilityCards.map((capability, index) => (
             <motion.article
-              initial={{ y: 16, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ delay: Math.min(index * 0.05, 0.2), duration: 0.35 }}
-              viewport={{ once: true }}
               key={capability.title}
+              variants={cardReveal}
               className="rounded-2xl border border-white/10 bg-white/[0.04] p-6 shadow-xl shadow-black/10"
             >
               <div className="flex items-start justify-between gap-6">
@@ -133,20 +176,27 @@ const Services = () => {
               </div>
             </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         <motion.div
-          initial={{ y: 12, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.18, duration: 0.35 }}
-          viewport={{ once: true }}
+          variants={cardReveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
           className="mt-8 rounded-2xl border border-white/10 bg-white/[0.03] p-5"
         >
           <p className="mb-4 text-sm font-medium text-white/60">Also comfortable with</p>
-          <div className="flex flex-wrap gap-3">
+          <motion.div
+            className="flex flex-wrap gap-3"
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+          >
             {supportingStack.map((skill) => (
-              <span
+              <motion.span
                 key={skill.id}
+                variants={chipReveal}
                 className="inline-flex items-center gap-2 rounded-full bg-white/[0.06] px-3 py-1.5 text-sm text-white/70"
               >
                 <Image
@@ -157,9 +207,9 @@ const Services = () => {
                   className={`h-4 w-4 object-contain ${skill.id === 'threejs' ? 'invert' : ''}`}
                 />
                 {skill.title}
-              </span>
+              </motion.span>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </motion.section>

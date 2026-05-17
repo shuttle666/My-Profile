@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { infoList } from '@/content/skills'
-import { motion } from 'motion/react'
+import { motion, type Variants } from 'motion/react'
 import myself from '@/assets/images/profile/myself.jpg'
 
 const workingPrinciples = [
@@ -16,6 +16,37 @@ const profileNotes = [
   { label: 'Practice', value: 'Frontend, backend, database, deployment' },
   { label: 'Interest', value: 'Workflow tools, dashboards, API-backed apps' },
 ]
+
+const revealViewport = { once: true, amount: 0.18 }
+
+const staggerContainer: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.08,
+    },
+  },
+}
+
+const cardReveal: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 26,
+    scale: 0.98,
+    filter: 'blur(8px)',
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: 'blur(0px)',
+    transition: {
+      duration: 0.45,
+      ease: 'easeOut',
+    },
+  },
+}
 
 const About = () => {
   return (
@@ -104,14 +135,15 @@ const About = () => {
         </div>
 
         <motion.ul
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.35, delay: 0.12 }}
-          viewport={{ once: true }}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
           className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-3"
         >
           {infoList.map(({ id, icon, iconDark, title, description }) => (
             <motion.li
+              variants={cardReveal}
               whileHover={{ y: -4 }}
               className="rounded-2xl border border-gray-200 bg-white p-6 shadow-lg shadow-gray-900/5 transition duration-500 hover:shadow-xl hover:shadow-gray-900/10 dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20"
               key={id}
