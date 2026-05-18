@@ -12,6 +12,7 @@ import {
   siteTitle,
   siteUrl,
 } from './seo'
+import ThemeSync from '@/components/ThemeSync'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -75,10 +76,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   try {
     const storedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.classList.toggle(
-      'dark',
-      storedTheme === 'dark' || (storedTheme !== 'light' && prefersDark)
-    );
+    const shouldUseDark = storedTheme === 'dark' || (storedTheme !== 'light' && prefersDark);
+    document.documentElement.classList.toggle('dark', shouldUseDark);
+    document.documentElement.style.colorScheme = shouldUseDark ? 'dark' : 'light';
   } catch {
   }
 })();`}
@@ -87,6 +87,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(profileJsonLd) }}
         />
+        <ThemeSync />
         {children}
       </body>
     </html>

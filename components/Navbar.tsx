@@ -19,6 +19,7 @@ const Navbar = () => {
   const toggleDarkMode = (): void => {
     const shouldUseDarkMode = !document.documentElement.classList.contains('dark')
     document.documentElement.classList.toggle('dark', shouldUseDarkMode)
+    document.documentElement.style.colorScheme = shouldUseDarkMode ? 'dark' : 'light'
     localStorage.setItem('theme', shouldUseDarkMode ? 'dark' : 'light')
   }
 
