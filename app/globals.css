@@ -26,6 +26,15 @@ body {
     radial-gradient(circle at 92% 10%, rgba(250, 204, 21, 0.08), transparent 28rem),
     linear-gradient(180deg, #f8fbff 0%, #ffffff 38%, #f8fafc 74%, #ffffff 100%);
   background-attachment: fixed;
+  background-position:
+    0% 0%,
+    100% 0%,
+    50% 50%;
+  background-size:
+    120% 120%,
+    120% 120%,
+    100% 100%;
+  animation: portfolio-background-drift 12s ease-in-out infinite alternate;
 }
 
 html.dark {
@@ -38,6 +47,41 @@ html.dark body {
     radial-gradient(circle at 92% 10%, rgba(168, 85, 247, 0.14), transparent 28rem),
     linear-gradient(180deg, #090b12 0%, #11001f 46%, #15121d 100%);
   background-attachment: fixed;
+  background-position:
+    0% 0%,
+    100% 0%,
+    50% 50%;
+  background-size:
+    120% 120%,
+    120% 120%,
+    100% 100%;
+  animation: portfolio-background-drift 14s ease-in-out infinite alternate;
+}
+
+@keyframes portfolio-background-drift {
+  0% {
+    background-position:
+      0% 0%,
+      100% 0%,
+      50% 50%;
+  }
+  100% {
+    background-position:
+      22% 12%,
+      78% 16%,
+      50% 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  html.dark body {
+    animation: none;
+  }
+
+  [data-ambient-glow] {
+    transform: none !important;
+  }
 }
 
 /* * {

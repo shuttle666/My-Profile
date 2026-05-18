@@ -17,7 +17,7 @@ const profileNotes = [
   { label: 'Interest', value: 'Workflow tools, dashboards, API-backed apps' },
 ]
 
-const revealViewport = { once: true, amount: 0.18 }
+const revealViewport = { once: false, amount: 0.18 }
 
 const staggerContainer: Variants = {
   hidden: {},
@@ -52,7 +52,7 @@ const About = () => {
   return (
     <motion.section
       id="about"
-      className="w-full scroll-mt-20 px-6 py-24 sm:px-10 lg:px-[8%]"
+      className="relative w-full scroll-mt-20 px-6 py-24 sm:px-10 lg:px-[8%]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.35 }}

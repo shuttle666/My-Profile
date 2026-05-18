@@ -19,9 +19,7 @@ const proofPoints = [
 
 const Header = () => {
   return (
-    <section className="relative min-h-screen overflow-hidden px-6 pt-32 pb-20 sm:px-10 lg:px-[8%]">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(69,123,157,0.18),transparent_34%),radial-gradient(circle_at_86%_18%,rgba(250,204,21,0.10),transparent_30%)] dark:bg-[radial-gradient(circle_at_18%_18%,rgba(59,130,246,0.24),transparent_34%),radial-gradient(circle_at_86%_18%,rgba(168,85,247,0.16),transparent_30%)]" />
-
+    <section className="relative min-h-screen px-6 pt-32 pb-20 sm:px-10 lg:px-[8%]">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
         <motion.div
           initial={{ y: 18, opacity: 0 }}

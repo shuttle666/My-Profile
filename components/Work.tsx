@@ -46,7 +46,7 @@ const projectDetails: Record<string, { role: string; result: string; stack: stri
 
 const [featuredProject, ...secondaryProjects] = workData
 
-const revealViewport = { once: true, amount: 0.18 }
+const revealViewport = { once: false, amount: 0.18 }
 
 const staggerContainer: Variants = {
   hidden: {},
@@ -109,7 +109,7 @@ const Work = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.35 }}
       id="work"
-      className="w-full scroll-mt-20 px-6 py-24 sm:px-10 lg:px-[8%]"
+      className="relative w-full scroll-mt-20 px-6 py-24 sm:px-10 lg:px-[8%]"
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
