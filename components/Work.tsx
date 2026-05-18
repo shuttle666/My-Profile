@@ -12,8 +12,15 @@ const techIconMap: Record<string, { icon: typeof assets.react; invertInDark?: bo
   Docker: { icon: assets.docker },
   JWT: { icon: assets.code_icon, invertInDark: true },
   React: { icon: assets.react },
+  TypeScript: { icon: assets.typescript },
+  Express: { icon: assets.express, invertInDark: true },
+  Prisma: { icon: assets.prisma, invertInDark: true },
+  AWS: { icon: assets.aws },
   'UI design': { icon: assets.figma },
   'State management': { icon: assets.code_icon, invertInDark: true },
+  'Component state': { icon: assets.react },
+  Props: { icon: assets.code_icon, invertInDark: true },
+  Sass: { icon: assets.css },
   'Next.js': { icon: assets.nextjs, invertInDark: true },
   'Responsive UI': { icon: assets.tailwindcss },
   'Three.js': { icon: assets.threejs, invertInDark: true },
@@ -22,26 +29,34 @@ const techIconMap: Record<string, { icon: typeof assets.react; invertInDark?: bo
 }
 
 const projectDetails: Record<string, { role: string; result: string; stack: string[] }> = {
+  opsflow: {
+    role: 'Full-stack SaaS platform',
+    result:
+      'Tenant-scoped dispatch operations with RBAC, job lifecycle flows, evidence capture, audit activity, notifications, and AI-assisted planning.',
+    stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'AWS'],
+  },
   'login-register': {
     role: 'Full-stack build',
-    result: 'Authentication, protected flows, PostgreSQL persistence, Dockerized deployment.',
+    result: 'Authentication, protected flows, PostgreSQL persistence, and Vercel services deployment.',
     stack: ['Node.js', 'PostgreSQL', 'Docker', 'JWT'],
   },
   'recipes-book': {
-    role: 'Frontend product',
-    result: 'Recipe management flow with real-time editing and a clean, responsive interface.',
-    stack: ['React', 'UI design', 'State management'],
-  },
-  taxpal: {
-    role: 'Responsive build',
-    result: 'Next.js marketing interface focused on layout accuracy and component reuse.',
-    stack: ['Next.js', 'React', 'Responsive UI'],
+    role: 'React fundamentals',
+    result:
+      'Component-based recipe manager with add, edit, delete, selection state, and nested ingredient/instruction updates.',
+    stack: ['React', 'Component state', 'Props', 'Sass'],
   },
   'threejs-demo': {
     role: 'Interactive prototype',
     result: '3D viewer with orbit controls and a GUI panel for experimenting with scene settings.',
     stack: ['Three.js', 'Controls', 'Canvas'],
   },
+}
+
+const getProjectImageClass = (projectId: string) => {
+  if (projectId === 'opsflow') return 'object-cover object-[58%_50%]'
+  if (projectId === 'login-register') return 'object-cover object-[78%_50%]'
+  return 'object-cover'
 }
 
 const [featuredProject, ...secondaryProjects] = workData
@@ -164,7 +179,7 @@ const Work = () => {
                 alt={`${featuredProject.title} project preview`}
                 fill
                 sizes="(min-width: 1024px) 56vw, 100vw"
-                className="object-cover"
+                className={getProjectImageClass(featuredProject.id)}
                 priority
               />
             </a>
@@ -249,7 +264,7 @@ const Work = () => {
                   alt={`${project.title} project preview`}
                   fill
                   sizes="(min-width: 768px) 33vw, 100vw"
-                  className="object-cover"
+                  className={getProjectImageClass(project.id)}
                 />
               </div>
 
@@ -270,8 +285,8 @@ const Work = () => {
               </div>
 
               <div className="absolute inset-0 z-10 flex items-center justify-center bg-white/55 opacity-0 backdrop-blur-sm transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100 dark:bg-gray-950/55">
-                <span className="rounded-full bg-gray-950 px-6 py-3 text-sm font-semibold tracking-[0.16em] text-white uppercase shadow-xl shadow-gray-950/20 dark:bg-white dark:text-gray-950">
-                  View
+                <span className="rounded-full bg-gray-950 px-6 py-3 text-sm font-semibold tracking-[0.08em] text-white uppercase shadow-xl shadow-gray-950/20 dark:bg-white dark:text-gray-950">
+                  View Project
                 </span>
               </div>
             </motion.a>

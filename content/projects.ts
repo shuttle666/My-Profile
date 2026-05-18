@@ -3,27 +3,33 @@ import type { ProjectItem } from '@/types/domain'
 
 export const workData: ProjectItem[] = [
   {
+    id: 'opsflow',
+    title: 'OpsFlow',
+    description:
+      'A multi-tenant field service operations platform with dispatch workflows, RBAC, audit logs, and AI-assisted planning.',
+    bgImage: '/projects/opsflow-cover.svg',
+    technologies: [
+      { id: 'nextjs', icon: assets.nextjs, name: 'Next.js' },
+      { id: 'typescript', icon: assets.typescript, name: 'TypeScript' },
+      { id: 'postgresql', icon: assets.postgresql, name: 'PostgreSQL' },
+    ],
+    link: 'https://opsflow.aboutwenduo.wang',
+  },
+  {
     id: 'login-register',
     title: 'Login and Register',
     description: 'JWT-based login system with video streaming - Node.js, PostgreSQL, Docker.',
     bgImage: '/projects/loginRegister.png',
-    link: 'https://login-and-register-frontend-4pihla-a9a1c4-13-54-49-177.traefik.me/',
+    link: 'https://login-register-nine-beta.vercel.app/',
   },
   {
     id: 'recipes-book',
     title: 'Recipes Book',
-    description: 'A React-based recipe management app with real-time editing and modern UI design.',
+    description:
+      'A React recipe manager focused on component composition, state updates, and editable nested form data.',
     bgImage: '/projects/recipesBook.png',
     technologies: [{ id: 'react', icon: assets.react, name: 'React' }],
     link: 'https://recipes-one-azure.vercel.app/',
-  },
-  {
-    id: 'taxpal',
-    title: 'Taxpal',
-    description: 'A responsive TaxPal website clone built with Next.js and React.',
-    bgImage: '/projects/taxpal.png',
-    technologies: [{ id: 'react', icon: assets.react, name: 'React' }],
-    link: 'https://taxpal-app-ewa8l4-b515fe-13-54-49-177.traefik.me/',
   },
   {
     id: 'threejs-demo',
