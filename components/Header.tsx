@@ -19,8 +19,8 @@ const proofPoints = [
 
 const Header = () => {
   return (
-    <section className="relative px-6 pt-32 pb-32 sm:px-10 lg:px-[8%]">
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
+    <section className="relative flex min-h-[100svh] items-center px-6 pt-32 pb-32 sm:px-10 lg:px-[8%]">
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
         <motion.div
           initial={{ y: 18, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}

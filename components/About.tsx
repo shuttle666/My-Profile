@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useEffect, useRef, useState } from 'react'
 import { infoList } from '@/content/skills'
 import { motion, type Variants } from 'motion/react'
 import myself from '@/assets/images/profile/myself.jpg'
@@ -49,13 +50,53 @@ const cardReveal: Variants = {
 }
 
 const About = () => {
+  const sectionRef = useRef<HTMLElement | null>(null)
+  const [hasUserScrolled, setHasUserScrolled] = useState(false)
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 8) {
+        setHasUserScrolled(true)
+      }
+    }
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    const section = sectionRef.current
+
+    if (!section) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.12)
+      },
+      { threshold: [0, 0.12, 0.25] },
+    )
+
+    observer.observe(section)
+
+    return () => observer.disconnect()
+  }, [])
+
+  const shouldReveal = hasUserScrolled && isInView
+
   return (
     <motion.section
+      ref={sectionRef}
       id="about"
       className="relative w-full scroll-mt-20 px-6 py-24 sm:px-10 lg:px-[8%]"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 0.35 }}
+      initial={false}
+      animate={shouldReveal ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
+      transition={{ duration: 0.42, ease: 'easeOut' }}
+      style={{ pointerEvents: shouldReveal ? 'auto' : 'none' }}
     >
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
