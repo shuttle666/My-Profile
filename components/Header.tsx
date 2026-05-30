@@ -19,7 +19,7 @@ const proofPoints = [
 
 const Header = () => {
   return (
-    <section className="relative px-6 pt-32 pb-24 sm:px-10 lg:px-[8%]">
+    <section className="relative px-6 pt-32 pb-32 sm:px-10 lg:px-[8%]">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
         <motion.div
           initial={{ y: 18, opacity: 0 }}
