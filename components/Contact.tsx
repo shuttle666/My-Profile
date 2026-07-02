@@ -5,6 +5,9 @@ import Image from 'next/image'
 import { assets } from '@/assets'
 import { motion } from 'motion/react'
 
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
+const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+
 const Contact = () => {
   const [result, setResult] = React.useState('')
   const [isSubmitting, setIsSubmitting] = React.useState(false)
@@ -14,13 +17,23 @@ const Contact = () => {
     const form = event.currentTarget
     const formData = new FormData(form)
 
+    if (!WEB3FORMS_ACCESS_KEY) {
+      setResult('Contact form is not configured yet.')
+      return
+    }
+
+    formData.append('access_key', WEB3FORMS_ACCESS_KEY)
+
     try {
       setIsSubmitting(true)
       setResult('Sending...')
 
-      const response = await fetch('/api/contact', {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: 'POST',
         body: formData,
+        headers: {
+          Accept: 'application/json',
+        },
       })
 
       const data = (await response.json()) as { success?: boolean; message?: string }
@@ -84,10 +97,9 @@ const Contact = () => {
         className="max-w-2xl mx-auto"
       >
         <input
-          type="text"
-          name="company"
+          type="checkbox"
+          name="botcheck"
           tabIndex={-1}
-          autoComplete="off"
           className="hidden"
           aria-hidden="true"
         />
@@ -120,6 +132,7 @@ const Contact = () => {
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.28, duration: 0.3 }}
           rows={6}
+          maxLength={3000}
           placeholder="Enter your message"
           required
           className="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover/30 dark:border-white/90"
