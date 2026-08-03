@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "next typegen && tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "assets:audit": "node --no-warnings scripts/audit-assets.ts",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "motion": "^12.23.26",
-    "next": "16.1.1",
+    "next": "16.2.12",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
@@ -25,10 +25,16 @@
     "@types/react-dom": "^19.2.3",
     "@tailwindcss/postcss": "^4.1.18",
     "eslint": "^9.39.2",
-    "eslint-config-next": "16.1.1",
+    "eslint-config-next": "16.2.12",
     "prettier": "^3.6.2",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
+  },
+  "pnpm": {
+    "overrides": {
+      "next>postcss": "8.5.25",
+      "next>sharp": "0.35.3"
+    }
   },
   "packageManager": "pnpm@10.30.3+sha512.c961d1e0a2d8e354ecaa5166b822516668b7f44cb5bd95122d590dd81922f606f5473b6d23ec4a5be05e7fcd18e8488d47d978bbe981872f1145d06e9a740017"
 }
