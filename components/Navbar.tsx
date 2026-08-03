@@ -7,14 +7,21 @@ import { assets } from '@/assets'
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
+  const menuTriggerRef = React.useRef<HTMLButtonElement>(null)
+  const menuDialogRef = React.useRef<HTMLDivElement>(null)
+  const closeMenuButtonRef = React.useRef<HTMLButtonElement>(null)
 
-  const openMenu = (): void => {
+  const openMenu = React.useCallback((): void => {
     setIsMenuOpen(true)
-  }
+  }, [])
 
-  const closeMenu = (): void => {
+  const closeMenu = React.useCallback((): void => {
     setIsMenuOpen(false)
-  }
+
+    window.requestAnimationFrame(() => {
+      menuTriggerRef.current?.focus()
+    })
+  }, [])
 
   const toggleDarkMode = (): void => {
     const shouldUseDarkMode = !document.documentElement.classList.contains('dark')
@@ -31,6 +38,97 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+
+  React.useEffect(() => {
+    const desktopMediaQuery = window.matchMedia('(min-width: 768px)')
+
+    const closeMenuAtDesktopBreakpoint = (event: MediaQueryListEvent): void => {
+      if (event.matches) {
+        setIsMenuOpen(false)
+      }
+    }
+
+    desktopMediaQuery.addEventListener('change', closeMenuAtDesktopBreakpoint)
+
+    return () => {
+      desktopMediaQuery.removeEventListener('change', closeMenuAtDesktopBreakpoint)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    if (!isMenuOpen) {
+      return
+    }
+
+    const menuDialog = menuDialogRef.current
+    if (!menuDialog) {
+      return
+    }
+
+    const previousBodyOverflow = document.body.style.overflow
+    const previousDocumentOverflow = document.documentElement.style.overflow
+    const backgroundElements = [
+      menuTriggerRef.current?.closest('nav'),
+      document.querySelector('main'),
+      document.querySelector('footer'),
+    ].filter((element): element is HTMLElement => element instanceof HTMLElement)
+    const previousInertStates = backgroundElements.map((element) => element.inert)
+
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    backgroundElements.forEach((element) => {
+      element.inert = true
+    })
+
+    const focusTimer = window.requestAnimationFrame(() => {
+      closeMenuButtonRef.current?.focus()
+    })
+
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        closeMenu()
+        return
+      }
+
+      if (event.key !== 'Tab') {
+        return
+      }
+
+      const focusableElements = Array.from(
+        menuDialog.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]):not([tabindex="-1"]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((element) => element.getClientRects().length > 0)
+      const firstFocusableElement = focusableElements[0]
+      const lastFocusableElement = focusableElements.at(-1)
+
+      if (!firstFocusableElement || !lastFocusableElement) {
+        event.preventDefault()
+        return
+      }
+
+      if (event.shiftKey && document.activeElement === firstFocusableElement) {
+        event.preventDefault()
+        lastFocusableElement.focus()
+      } else if (!event.shiftKey && document.activeElement === lastFocusableElement) {
+        event.preventDefault()
+        firstFocusableElement.focus()
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.cancelAnimationFrame(focusTimer)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = previousBodyOverflow
+      document.documentElement.style.overflow = previousDocumentOverflow
+      backgroundElements.forEach((element, index) => {
+        element.inert = previousInertStates[index] ?? false
+      })
+    }
+  }, [closeMenu, isMenuOpen])
 
   return (
     <>
@@ -88,7 +186,7 @@ const Navbar = () => {
 
           <a
             href="#contact"
-            className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Ovo dark:border-white/50"
+            className="ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 font-Ovo lg:flex dark:border-white/50"
           >
             Contact
             <Image src={assets.arrow_icon} alt="" className="w-3 dark:hidden" />
@@ -96,8 +194,9 @@ const Navbar = () => {
           </a>
 
           <button
+            ref={menuTriggerRef}
             type="button"
-            className="block md:hidden ml-3"
+            className="ml-3 flex h-11 w-11 items-center justify-center rounded-full md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:focus-visible:ring-blue-300 dark:focus-visible:ring-offset-darkTheme"
             onClick={openMenu}
             aria-controls="mobile-menu"
             aria-expanded={isMenuOpen}
@@ -107,19 +206,37 @@ const Navbar = () => {
             <Image src={assets.menu_white} alt="" className="hidden w-6 dark:block" />
           </button>
         </div>
+      </nav>
 
-        {/* Mobile Menu */}
-        {/* <div className=''> */}
+      <div
+        ref={menuDialogRef}
+        id="mobile-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+        aria-hidden={isMenuOpen ? undefined : true}
+        inert={isMenuOpen ? undefined : true}
+        className={`fixed inset-0 z-[60] md:hidden transition-opacity duration-300 ${
+          isMenuOpen ? 'visible opacity-100' : 'invisible pointer-events-none opacity-0'
+        }`}
+      >
+        <button
+          type="button"
+          tabIndex={-1}
+          aria-label="Close mobile menu"
+          className="absolute inset-0 cursor-default bg-black/40 backdrop-blur-sm"
+          onClick={closeMenu}
+        />
 
-        <ul
-          id="mobile-menu"
-          className={`flex md:hidden flex-col gap-4 px-10 py-20 fixed right-0 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500 dark:bg-darkHover dark:text-white ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-64'
+        <div
+          className={`absolute top-0 right-0 h-dvh w-72 max-w-[85vw] bg-rose-50 px-8 py-20 shadow-2xl transition-transform duration-300 dark:bg-darkHover dark:text-white ${
+            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
           <button
+            ref={closeMenuButtonRef}
             type="button"
-            className="absolute right-6 top-6"
+            className="absolute top-5 right-5 flex h-11 w-11 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 focus-visible:ring-offset-rose-50 dark:focus-visible:ring-blue-300 dark:focus-visible:ring-offset-darkHover"
             aria-label="Close menu"
             onClick={closeMenu}
           >
@@ -131,35 +248,57 @@ const Navbar = () => {
             />
           </button>
 
-          <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#top">
-              Home
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#about">
-              About me
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#services">
-              Capabilities
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#work">
-              Work
-            </a>
-          </li>
-          <li>
-            <a className="font-Ovo" onClick={closeMenu} href="#contact">
-              Contact me
-            </a>
-          </li>
-        </ul>
-
-        {/* </div> */}
-      </nav>
+          <nav aria-label="Mobile navigation">
+            <ul className="flex flex-col gap-2">
+              <li>
+                <a
+                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  onClick={closeMenu}
+                  href="#top"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  onClick={closeMenu}
+                  href="#about"
+                >
+                  About me
+                </a>
+              </li>
+              <li>
+                <a
+                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  onClick={closeMenu}
+                  href="#services"
+                >
+                  Capabilities
+                </a>
+              </li>
+              <li>
+                <a
+                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  onClick={closeMenu}
+                  href="#work"
+                >
+                  Work
+                </a>
+              </li>
+              <li>
+                <a
+                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  onClick={closeMenu}
+                  href="#contact"
+                >
+                  Contact me
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
     </>
   )
 }

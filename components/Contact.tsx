@@ -7,6 +7,8 @@ import { motion } from 'motion/react'
 
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 const WEB3FORMS_ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY
+const FIELD_CLASS_NAME =
+  'w-full rounded-md border border-gray-400 bg-white px-4 py-3 text-gray-950 transition placeholder:text-gray-500 focus-visible:border-blue-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 dark:border-white/70 dark:bg-darkHover/30 dark:text-white dark:placeholder:text-white/60 dark:focus-visible:border-blue-300 dark:focus-visible:ring-blue-300 dark:focus-visible:ring-offset-darkTheme'
 
 const Contact = () => {
   const [result, setResult] = React.useState('')
@@ -59,18 +61,20 @@ const Contact = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.35 }}
       id="contact"
+      aria-labelledby="contact-heading"
       className='w-full px-[12%] py-10 scroll-mt-20 bg-[url("/backgrounds/footer-bg-color.png")] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none'
     >
-      <motion.h4
+      <motion.p
         initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.05, duration: 0.3 }}
         className="text-center mb-2 text-lg font-Ovo"
       >
         Connect with me
-      </motion.h4>
+      </motion.p>
 
       <motion.h2
+        id="contact-heading"
         initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1, duration: 0.35 }}
@@ -94,6 +98,7 @@ const Contact = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.18, duration: 0.35 }}
         onSubmit={onSubmit}
+        aria-labelledby="contact-heading"
         className="max-w-2xl mx-auto"
       >
         <input
@@ -104,46 +109,74 @@ const Contact = () => {
           aria-hidden="true"
         />
 
-        <div className="grid grid-cols-auto gap-6 mt-10 mb-8">
-          <motion.input
+        <div className="mt-10 mb-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <motion.div
             initial={{ y: 10, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.3 }}
-            type="text"
-            placeholder="Enter your name"
-            required
-            className="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90"
-            name="name"
-          />
+          >
+            <label htmlFor="contact-name" className="mb-2 block text-sm font-medium">
+              Name
+            </label>
+            <input
+              id="contact-name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              placeholder="Your name"
+              maxLength={100}
+              required
+              className={FIELD_CLASS_NAME}
+            />
+          </motion.div>
 
-          <motion.input
+          <motion.div
             initial={{ y: 10, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.24, duration: 0.3 }}
-            type="email"
-            placeholder="Enter your email"
-            required
-            className="flex-1 p-3 outline-none border-[0.5px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90"
-            name="email"
-          />
+          >
+            <label htmlFor="contact-email" className="mb-2 block text-sm font-medium">
+              Email
+            </label>
+            <input
+              id="contact-email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              inputMode="email"
+              placeholder="you@example.com"
+              maxLength={254}
+              required
+              className={FIELD_CLASS_NAME}
+            />
+          </motion.div>
         </div>
-        <motion.textarea
+
+        <motion.div
           initial={{ y: 10, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.28, duration: 0.3 }}
-          rows={6}
-          maxLength={3000}
-          placeholder="Enter your message"
-          required
-          className="w-full p-4 outline-none border-[0.5px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover/30 dark:border-white/90"
-          name="message"
-        ></motion.textarea>
+          className="mb-6"
+        >
+          <label htmlFor="contact-message" className="mb-2 block text-sm font-medium">
+            Message
+          </label>
+          <textarea
+            id="contact-message"
+            name="message"
+            rows={6}
+            maxLength={3000}
+            placeholder="Tell me about the role or project"
+            required
+            className={FIELD_CLASS_NAME}
+          />
+        </motion.div>
 
         <motion.button
           whileHover={{ y: -2 }}
           transition={{ duration: 0.2 }}
           type="submit"
-          className="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 cursor-pointer dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover"
+          className="mx-auto flex w-max cursor-pointer items-center justify-between gap-2 rounded-full bg-black/80 px-8 py-3 text-white duration-500 hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60 dark:border dark:border-white/70 dark:bg-transparent dark:hover:bg-darkHover dark:focus-visible:ring-blue-300 dark:focus-visible:ring-offset-darkTheme"
           disabled={isSubmitting}
           aria-busy={isSubmitting}
         >
@@ -151,7 +184,15 @@ const Contact = () => {
           <Image src={assets.right_arrow_white} alt="" className="w-4" />
         </motion.button>
 
-        <p className="mt-4">{result}</p>
+        <p
+          id="contact-form-status"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="mt-4 min-h-8 text-center text-sm text-gray-700 dark:text-white/80"
+        >
+          {result}
+        </p>
       </motion.form>
     </motion.section>
   )
