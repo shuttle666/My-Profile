@@ -68,7 +68,7 @@ const Contact = () => {
         initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.05, duration: 0.3 }}
-        className="text-center mb-2 text-lg font-Ovo"
+        className="text-center mb-2 text-lg"
       >
         Connect with me
       </motion.p>
@@ -78,7 +78,7 @@ const Contact = () => {
         initial={{ y: -10, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.1, duration: 0.35 }}
-        className="text-center text-5xl font-Ovo"
+        className="text-center text-5xl font-ovo"
       >
         Get in touch
       </motion.h2>
@@ -87,7 +87,7 @@ const Contact = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ delay: 0.15, duration: 0.35 }}
-        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
+        className="text-center max-w-2xl mx-auto mt-5 mb-12"
       >
         I&apos;d love to hear from you! If you have any questions, comments, or feedback, please use
         the form below.

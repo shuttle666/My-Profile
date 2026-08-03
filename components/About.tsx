@@ -78,7 +78,7 @@ const About = () => {
       ([entry]) => {
         setIsInView(entry.isIntersecting && entry.intersectionRatio >= 0.12)
       },
-      { threshold: [0, 0.12, 0.25] },
+      { threshold: [0, 0.12, 0.25] }
     )
 
     observer.observe(section)
@@ -115,7 +115,7 @@ const About = () => {
                   src={myself}
                   alt="Wenduo Wang portrait"
                   fill
-                  sizes="(min-width: 1024px) 38vw, 90vw"
+                  sizes="(min-width: 1280px) 420px, (min-width: 1024px) 38vw, calc(100vw - 48px)"
                   className="object-cover object-[47%_center]"
                 />
               </div>
@@ -144,7 +144,7 @@ const About = () => {
             <p className="text-sm font-semibold tracking-[0.22em] text-blue-700 uppercase dark:text-blue-300">
               Introduction
             </p>
-            <h2 className="mt-4 max-w-3xl text-4xl leading-tight font-semibold text-gray-950 sm:text-5xl dark:text-white">
+            <h2 className="mt-4 max-w-3xl text-4xl leading-tight font-semibold text-gray-950 font-ovo sm:text-5xl dark:text-white">
               A full-stack developer who thinks in product flows.
             </h2>
 

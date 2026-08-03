@@ -113,7 +113,7 @@ const Services = () => {
               initial={{ y: -10, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.35 }}
-              className="mt-4 max-w-xl text-4xl leading-tight font-semibold text-gray-950 sm:text-5xl dark:text-white"
+              className="mt-4 max-w-xl text-4xl leading-tight font-semibold text-gray-950 font-ovo sm:text-5xl dark:text-white"
             >
               A stack organized around shipping useful software.
             </motion.h2>

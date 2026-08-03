@@ -33,12 +33,12 @@ const Header = () => {
             Available for full-stack opportunities
           </div>
 
-          <p className="mb-4 flex items-center gap-2 text-lg text-gray-700 font-Ovo dark:text-white/75">
+          <p className="mb-4 flex items-center gap-2 text-lg text-gray-700 font-ovo dark:text-white/75">
             Hello, I am Wenduo Wang
             <Image src={assets.hand_icon} alt="" className="w-5" />
           </p>
 
-          <h1 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-normal text-gray-950 sm:text-6xl lg:text-[74px] dark:text-white">
+          <h1 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-normal text-gray-950 font-ovo sm:text-6xl lg:text-[74px] dark:text-white">
             I build reliable web apps from interface to deployment.
           </h1>
 
@@ -97,7 +97,7 @@ const Header = () => {
               <Image
                 src={myface}
                 fill
-                sizes="(min-width: 1024px) 40vw, 90vw"
+                sizes="(min-width: 1280px) 500px, (min-width: 1024px) 40vw, calc(100vw - 48px)"
                 alt="Wenduo Wang profile photo"
                 className="object-cover object-[48%_center]"
                 priority

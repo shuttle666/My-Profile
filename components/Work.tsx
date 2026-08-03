@@ -37,7 +37,8 @@ const projectDetails: Record<string, { role: string; result: string; stack: stri
   },
   'login-register': {
     role: 'Full-stack build',
-    result: 'Authentication, protected flows, PostgreSQL persistence, and Vercel services deployment.',
+    result:
+      'Authentication, protected flows, PostgreSQL persistence, and Vercel services deployment.',
     stack: ['Node.js', 'PostgreSQL', 'Docker', 'JWT'],
   },
   'recipes-book': {
@@ -142,7 +143,7 @@ const Work = () => {
               initial={{ y: -10, opacity: 0 }}
               whileInView={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1, duration: 0.35 }}
-              className="mt-4 text-4xl leading-tight font-semibold text-gray-950 sm:text-5xl dark:text-white"
+              className="mt-4 text-4xl leading-tight font-semibold text-gray-950 font-ovo sm:text-5xl dark:text-white"
             >
               Projects that show how I think, build, and ship.
             </motion.h2>
@@ -178,9 +179,8 @@ const Work = () => {
                 src={featuredProject.bgImage}
                 alt={`${featuredProject.title} project preview`}
                 fill
-                sizes="(min-width: 1024px) 56vw, 100vw"
+                sizes="(min-width: 1280px) 620px, (min-width: 1024px) 54vw, calc(100vw - 48px)"
                 className={getProjectImageClass(featuredProject.id)}
-                priority
               />
             </a>
 
@@ -298,7 +298,7 @@ const Work = () => {
             <p className="text-sm font-semibold tracking-[0.22em] text-blue-700 uppercase dark:text-blue-300">
               Experience
             </p>
-            <h3 className="mt-4 text-3xl leading-tight font-semibold text-gray-950 dark:text-white">
+            <h3 className="mt-4 text-3xl leading-tight font-semibold text-gray-950 font-ovo dark:text-white">
               A practical path through product teams and client work.
             </h3>
             <p className="mt-5 text-base leading-8 text-gray-600 dark:text-white/60">

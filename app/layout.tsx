@@ -16,12 +16,15 @@ import ThemeSync from '@/components/ThemeSync'
 
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  variable: '--font-outfit-family',
+  display: 'swap',
 })
 
 const ovo = Ovo({
   subsets: ['latin'],
-  weight: ['400'],
+  weight: '400',
+  variable: '--font-ovo-family',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -69,7 +72,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body
-        className={`${outfit.className} ${ovo.className} antialiased leading-8 overflow-x-hidden dark:bg-darkTheme dark:text-white`}
+        className={`${outfit.variable} ${ovo.variable} font-outfit antialiased leading-8 overflow-x-hidden dark:bg-darkTheme dark:text-white`}
       >
         <Script id="theme-init" strategy="beforeInteractive">
           {`(() => {

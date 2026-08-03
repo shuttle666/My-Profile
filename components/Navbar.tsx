@@ -152,29 +152,19 @@ const Navbar = () => {
           className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScrolled ? '' : 'bg-white/50 shadow-sm'} dark:border dark:border-white/50 dark:bg-transparent`}
         >
           <li>
-            <a className="font-Ovo" href="#top">
-              Home
-            </a>
+            <a href="#top">Home</a>
           </li>
           <li>
-            <a className="font-Ovo" href="#about">
-              About me
-            </a>
+            <a href="#about">About me</a>
           </li>
           <li>
-            <a className="font-Ovo" href="#services">
-              Capabilities
-            </a>
+            <a href="#services">Capabilities</a>
           </li>
           <li>
-            <a className="font-Ovo" href="#work">
-              Work
-            </a>
+            <a href="#work">Work</a>
           </li>
           <li>
-            <a className="font-Ovo" href="#contact">
-              Contact me
-            </a>
+            <a href="#contact">Contact me</a>
           </li>
         </ul>
 
@@ -186,7 +176,7 @@ const Navbar = () => {
 
           <a
             href="#contact"
-            className="ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 font-Ovo lg:flex dark:border-white/50"
+            className="ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 lg:flex dark:border-white/50"
           >
             Contact
             <Image src={assets.arrow_icon} alt="" className="w-3 dark:hidden" />
@@ -252,7 +242,7 @@ const Navbar = () => {
             <ul className="flex flex-col gap-2">
               <li>
                 <a
-                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
                   href="#top"
                 >
@@ -261,7 +251,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
                   href="#about"
                 >
@@ -270,7 +260,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
                   href="#services"
                 >
@@ -279,7 +269,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
                   href="#work"
                 >
@@ -288,7 +278,7 @@ const Navbar = () => {
               </li>
               <li>
                 <a
-                  className="block rounded-md px-2 py-2 font-Ovo focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
+                  className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
                   href="#contact"
                 >

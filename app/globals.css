@@ -7,13 +7,15 @@
   --color-darkHover: #2a004a;
   --color-darkTheme: #11001f;
 
-  --font-Outfit: Outfit, sans-serif;
-  --font-Ovo: Ovo, serif;
-
   --shadow-black: 4px 4px 0 #000;
   --shadow-white: 4px 4px 0 #fff;
 
   --grid-template-columns-auto: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@theme inline {
+  --font-outfit: var(--font-outfit-family), sans-serif;
+  --font-ovo: var(--font-ovo-family), serif;
 }
 
 html {
@@ -83,7 +85,3 @@ html.dark body {
     transform: none !important;
   }
 }
-
-/* * {
-  font-family: Outfit;
-} */

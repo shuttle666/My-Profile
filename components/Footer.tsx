@@ -107,11 +107,11 @@ const Footer = () => {
         transition={{ duration: 0.3, delay: 0.24 }}
         className="text-center sm:flex items-center justify-between border-t border-gray-400 mx-[10%] mt-2 py-2"
       >
-        <p className="text-sm text-gray-600 font-Ovo dark:text-white/40">
+        <p className="text-sm text-gray-600 dark:text-white/40">
           © {currentYear} Wenduo Wang. Built with Next.js.
         </p>
 
-        <p className="text-sm text-gray-600 font-Ovo sm:mt-0 dark:text-white/40">
+        <p className="text-sm text-gray-600 sm:mt-0 dark:text-white/40">
           &quot;Code with passion, create with purpose.&quot;
         </p>
       </motion.div>
