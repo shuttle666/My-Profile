@@ -4,6 +4,7 @@ import { assets } from '@/assets'
 import { workData } from '@/content/projects'
 import { workExperienceData } from '@/content/internship'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, type Variants } from 'motion/react'
 
 const techIconMap: Record<string, { icon: typeof assets.react; invertInDark?: boolean }> = {
@@ -26,32 +27,6 @@ const techIconMap: Record<string, { icon: typeof assets.react; invertInDark?: bo
   'Three.js': { icon: assets.threejs, invertInDark: true },
   Controls: { icon: assets.cursor },
   Canvas: { icon: assets.javascript },
-}
-
-const projectDetails: Record<string, { role: string; result: string; stack: string[] }> = {
-  opsflow: {
-    role: 'Full-stack SaaS platform',
-    result:
-      'Tenant-scoped dispatch operations with RBAC, job lifecycle flows, evidence capture, audit activity, notifications, and AI-assisted planning.',
-    stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'AWS'],
-  },
-  'login-register': {
-    role: 'Full-stack build',
-    result:
-      'Authentication, protected flows, PostgreSQL persistence, and Vercel services deployment.',
-    stack: ['Node.js', 'PostgreSQL', 'Docker', 'JWT'],
-  },
-  'recipes-book': {
-    role: 'React fundamentals',
-    result:
-      'Component-based recipe manager with add, edit, delete, selection state, and nested ingredient/instruction updates.',
-    stack: ['React', 'Component state', 'Props', 'Sass'],
-  },
-  'threejs-demo': {
-    role: 'Interactive prototype',
-    result: '3D viewer with orbit controls and a GUI panel for experimenting with scene settings.',
-    stack: ['Three.js', 'Controls', 'Canvas'],
-  },
 }
 
 const getProjectImageClass = (projectId: string) => {
@@ -168,13 +143,7 @@ const Work = () => {
             viewport={revealViewport}
             className="mt-14 grid overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-2xl shadow-gray-900/[0.08] lg:grid-cols-[1.08fr_0.92fr] dark:border-white/10 dark:bg-white/[0.04] dark:shadow-black/20"
           >
-            <a
-              href={featuredProject.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="relative block min-h-[360px] overflow-hidden bg-gray-100 dark:bg-white/5"
-              aria-label={`Visit ${featuredProject.title}`}
-            >
+            <div className="relative min-h-[360px] overflow-hidden bg-gray-100 dark:bg-white/5">
               <Image
                 src={featuredProject.bgImage}
                 alt={`${featuredProject.title} project preview`}
@@ -182,7 +151,7 @@ const Work = () => {
                 sizes="(min-width: 1280px) 620px, (min-width: 1024px) 54vw, calc(100vw - 48px)"
                 className={getProjectImageClass(featuredProject.id)}
               />
-            </a>
+            </div>
 
             <div className="flex flex-col justify-between p-7 sm:p-10">
               <div>
@@ -199,43 +168,57 @@ const Work = () => {
 
                 <div className="mt-7 grid gap-4">
                   <div>
-                    <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/40">
-                      Role
+                    <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/60">
+                      My role
                     </p>
                     <p className="mt-2 text-gray-900 dark:text-white/80">
-                      {projectDetails[featuredProject.id]?.role}
+                      {featuredProject.details.role}
                     </p>
                   </div>
 
                   <div>
-                    <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/40">
-                      Outcome
+                    <p className="text-xs font-semibold tracking-[0.18em] text-gray-500 uppercase dark:text-white/60">
+                      What shipped
                     </p>
                     <p className="mt-2 text-gray-700 dark:text-white/60">
-                      {projectDetails[featuredProject.id]?.result}
+                      {featuredProject.details.result}
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-8 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex flex-1 flex-wrap gap-2">
-                  {projectDetails[featuredProject.id]?.stack.map((item) => renderStackTag(item))}
+              <div className="mt-8">
+                <div className="flex flex-wrap gap-2">
+                  {featuredProject.details.stack.map((item) => renderStackTag(item))}
                 </div>
 
-                <a
-                  href={featuredProject.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex w-max shrink-0 items-center justify-center gap-3 rounded-md bg-gray-950 px-5 py-3 font-medium text-white shadow-lg shadow-gray-950/10 transition-colors duration-300 hover:bg-[#e7eef5] hover:text-gray-950 dark:bg-white dark:text-gray-950 dark:shadow-black/20 dark:hover:bg-[#e7eef5]"
-                >
-                  View live project
-                  <Image
-                    src={assets.right_arrow_white}
-                    alt=""
-                    className="w-4 transition duration-300 group-hover:translate-x-1 group-hover:invert dark:invert"
-                  />
-                </a>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  {featuredProject.details.caseStudyHref && (
+                    <Link
+                      href={featuredProject.details.caseStudyHref}
+                      className="group inline-flex flex-1 items-center justify-center gap-3 rounded-md bg-gray-950 px-5 py-3 font-medium text-white shadow-lg shadow-gray-950/10 transition-colors duration-300 hover:bg-[#e7eef5] hover:text-gray-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:bg-white dark:text-gray-950 dark:shadow-black/20 dark:hover:bg-[#e7eef5] dark:focus-visible:ring-offset-darkTheme"
+                    >
+                      Read case study
+                      <span
+                        aria-hidden="true"
+                        className="transition-transform group-hover:translate-x-1"
+                      >
+                        →
+                      </span>
+                    </Link>
+                  )}
+
+                  <a
+                    href={featuredProject.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex flex-1 items-center justify-center gap-2 rounded-md border border-gray-300 bg-white px-5 py-3 font-medium text-gray-900 transition-colors duration-300 hover:border-gray-950 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:border-white/20 dark:bg-transparent dark:text-white dark:hover:border-white/50 dark:hover:bg-white/[0.06] dark:focus-visible:ring-offset-darkTheme"
+                  >
+                    Live demo
+                    <span className="sr-only"> (opens in a new tab)</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </div>
               </div>
             </div>
           </motion.article>
@@ -270,17 +253,17 @@ const Work = () => {
 
               <div className="p-6">
                 <p className="text-sm font-medium text-blue-700 dark:text-blue-300">
-                  {projectDetails[project.id]?.role}
+                  {project.details.role}
                 </p>
                 <h3 className="mt-2 text-xl font-semibold text-gray-950 dark:text-white">
                   {project.title}
                 </h3>
                 <p className="mt-3 text-sm leading-7 text-gray-600 dark:text-white/60">
-                  {projectDetails[project.id]?.result || project.description}
+                  {project.details.result}
                 </p>
 
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {projectDetails[project.id]?.stack.map((item) => renderStackTag(item, 'small'))}
+                  {project.details.stack.map((item) => renderStackTag(item, 'small'))}
                 </div>
               </div>
 

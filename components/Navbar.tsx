@@ -2,14 +2,18 @@
 
 import React from 'react'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { assets } from '@/assets'
 
 const Navbar = () => {
+  const pathname = usePathname()
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [isScrolled, setIsScrolled] = React.useState(false)
   const menuTriggerRef = React.useRef<HTMLButtonElement>(null)
   const menuDialogRef = React.useRef<HTMLDivElement>(null)
   const closeMenuButtonRef = React.useRef<HTMLButtonElement>(null)
+  const sectionHref = (section: string): string =>
+    pathname === '/' ? `#${section}` : `/#${section}`
 
   const openMenu = React.useCallback((): void => {
     setIsMenuOpen(true)
@@ -135,7 +139,7 @@ const Navbar = () => {
       <nav
         className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScrolled ? 'bg-white bg-opacity-50 backdrop-blur-lg shadow-sm dark:bg-darkTheme dark:shadow-white/20' : ''}`}
       >
-        <a href="#top">
+        <a href={sectionHref('top')}>
           <Image
             src={assets.logo}
             alt="Wenduo Wang"
@@ -156,19 +160,19 @@ const Navbar = () => {
           className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScrolled ? '' : 'bg-white/50 shadow-sm'} dark:border dark:border-white/50 dark:bg-transparent`}
         >
           <li>
-            <a href="#top">Home</a>
+            <a href={sectionHref('top')}>Home</a>
           </li>
           <li>
-            <a href="#about">About me</a>
+            <a href={sectionHref('about')}>About me</a>
           </li>
           <li>
-            <a href="#services">Capabilities</a>
+            <a href={sectionHref('services')}>Capabilities</a>
           </li>
           <li>
-            <a href="#work">Work</a>
+            <a href={sectionHref('work')}>Work</a>
           </li>
           <li>
-            <a href="#contact">Contact me</a>
+            <a href={sectionHref('contact')}>Contact me</a>
           </li>
         </ul>
 
@@ -179,7 +183,7 @@ const Navbar = () => {
           </button>
 
           <a
-            href="#contact"
+            href={sectionHref('contact')}
             className="ml-4 hidden items-center gap-3 rounded-full border border-gray-500 px-10 py-2.5 lg:flex dark:border-white/50"
           >
             Contact
@@ -248,7 +252,7 @@ const Navbar = () => {
                 <a
                   className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
-                  href="#top"
+                  href={sectionHref('top')}
                 >
                   Home
                 </a>
@@ -257,7 +261,7 @@ const Navbar = () => {
                 <a
                   className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
-                  href="#about"
+                  href={sectionHref('about')}
                 >
                   About me
                 </a>
@@ -266,7 +270,7 @@ const Navbar = () => {
                 <a
                   className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
-                  href="#services"
+                  href={sectionHref('services')}
                 >
                   Capabilities
                 </a>
@@ -275,7 +279,7 @@ const Navbar = () => {
                 <a
                   className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
-                  href="#work"
+                  href={sectionHref('work')}
                 >
                   Work
                 </a>
@@ -284,7 +288,7 @@ const Navbar = () => {
                 <a
                   className="block rounded-md px-2 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 dark:focus-visible:ring-blue-300"
                   onClick={closeMenu}
-                  href="#contact"
+                  href={sectionHref('contact')}
                 >
                   Contact me
                 </a>

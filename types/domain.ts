@@ -8,12 +8,20 @@ export interface ProjectTechnology {
   name: string
 }
 
+export interface ProjectDetails {
+  role: string
+  result: string
+  stack: string[]
+  caseStudyHref?: string
+}
+
 export interface ProjectItem {
   id: string
   title: string
   description: string
   bgImage: string
   link: string
+  details: ProjectDetails
   technologies?: ProjectTechnology[]
 }
 
