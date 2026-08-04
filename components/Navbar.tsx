@@ -139,11 +139,15 @@ const Navbar = () => {
           <Image
             src={assets.logo}
             alt="Wenduo Wang"
+            preload
+            sizes="112px"
             className="w-28 cursor-pointer mr-14 mt-1 dark:hidden"
           />
           <Image
             src={assets.logo_dark}
             alt="Wenduo Wang"
+            preload
+            sizes="112px"
             className="hidden w-28 cursor-pointer mr-14 mt-1 dark:block"
           />
         </a>

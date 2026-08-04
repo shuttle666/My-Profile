@@ -9,6 +9,7 @@ type AmbientGlowProps = {
   variant: AmbientGlowVariant
   intensity?: AmbientGlowIntensity
   className?: string
+  animated?: boolean
 }
 
 const glowConfig: Record<
@@ -70,36 +71,39 @@ const intensityClass: Record<AmbientGlowIntensity, string> = {
   visible: 'blur-2xl saturate-150',
 }
 
-const AmbientGlow = ({ variant, intensity = 'soft', className = '' }: AmbientGlowProps) => {
+const AmbientGlow = ({
+  variant,
+  intensity = 'soft',
+  className = '',
+  animated = true,
+}: AmbientGlowProps) => {
   const shouldReduceMotion = useReducedMotion()
   const config = glowConfig[variant]
+  const shouldAnimate = animated && !shouldReduceMotion
+  const glowClassName = `pointer-events-none absolute z-0 rounded-full ${intensityClass[intensity]} ${config.className} ${className}`
+
+  if (!shouldAnimate) {
+    return <div aria-hidden="true" data-ambient-glow className={glowClassName} />
+  }
 
   return (
     <motion.div
       aria-hidden="true"
       data-ambient-glow
-      className={`pointer-events-none absolute z-0 rounded-full will-change-transform ${intensityClass[intensity]} ${config.className} ${className}`}
-      animate={
-        shouldReduceMotion
-          ? undefined
-          : {
-              x: config.x,
-              y: config.y,
-              scale: config.scale,
-              rotate: config.rotate,
-              opacity: config.opacity,
-            }
-      }
-      transition={
-        shouldReduceMotion
-          ? undefined
-          : {
-              duration: config.duration,
-              ease: 'easeInOut',
-              repeat: Infinity,
-              repeatType: 'mirror',
-            }
-      }
+      className={`${glowClassName} will-change-transform`}
+      animate={{
+        x: config.x,
+        y: config.y,
+        scale: config.scale,
+        rotate: config.rotate,
+        opacity: config.opacity,
+      }}
+      transition={{
+        duration: config.duration,
+        ease: 'easeInOut',
+        repeat: Infinity,
+        repeatType: 'mirror',
+      }}
     />
   )
 }

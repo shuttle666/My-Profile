@@ -75,6 +75,15 @@ html.dark body {
   }
 }
 
+@media (max-width: 639px) {
+  body,
+  html.dark body {
+    background-attachment: scroll;
+    background-size: 100% 100%;
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   body,
   html.dark body {
