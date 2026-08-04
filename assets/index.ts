@@ -12,7 +12,6 @@ import project_icon_dark from './images/ui/project-icon-dark.png'
 import right_arrow_white from './images/ui/right-arrow-white.png'
 import download_icon from './images/ui/download-icon.png'
 import hand_icon from './images/ui/hand-icon.png'
-import header_bg_color from './images/branding/header-bg-color.png'
 import moon_icon from './images/ui/moon_icon.png'
 import sun_icon from './images/ui/sun_icon.png'
 import arrow_icon from './images/ui/arrow-icon.png'
@@ -67,7 +66,6 @@ export const assets = {
   logo_dark,
   mail_icon,
   mail_icon_dark,
-  header_bg_color,
   moon_icon,
   sun_icon,
   arrow_icon,
