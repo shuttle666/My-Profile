@@ -1,8 +1,5 @@
-'use client'
-
 import { assets } from '@/assets'
 import Image from 'next/image'
-import { motion } from 'motion/react'
 import myface from '@/assets/images/profile/myface.jpg'
 
 const highlights = [
@@ -21,13 +18,7 @@ const Header = () => {
   return (
     <section className="relative flex min-h-[100svh] items-center px-6 pt-32 pb-32 sm:px-10 lg:px-[8%]">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
-        <motion.div
-          initial={{ y: 18, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.4 }}
-          viewport={{ once: true }}
-          className="max-w-3xl"
-        >
+        <div className="hero-copy-enter max-w-3xl">
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-black/10 bg-white/75 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm backdrop-blur dark:border-white/15 dark:bg-white/5 dark:text-white/80">
             <span className="h-2 w-2 rounded-full bg-emerald-500" />
             Available for full-stack opportunities
@@ -49,26 +40,22 @@ const Header = () => {
           </p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-            <motion.a
-              whileHover={{ y: -2 }}
-              transition={{ duration: 0.2 }}
+            <a
               href="#work"
-              className="inline-flex items-center justify-center gap-3 rounded-md bg-gray-950 px-6 py-3 font-medium text-white shadow-lg shadow-gray-950/10 dark:bg-white dark:text-gray-950"
+              className="inline-flex items-center justify-center gap-3 rounded-md bg-gray-950 px-6 py-3 font-medium text-white shadow-lg shadow-gray-950/10 transition-transform duration-200 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:bg-white dark:text-gray-950"
             >
               View selected work
               <Image src={assets.right_arrow_white} alt="" className="w-4 dark:invert" />
-            </motion.a>
+            </a>
 
-            <motion.a
-              whileHover={{ y: -2 }}
-              transition={{ duration: 0.2 }}
+            <a
               href="/downloads/wenduoResume.pdf"
               download
-              className="inline-flex items-center justify-center gap-3 rounded-md border border-gray-300 bg-white px-6 py-3 font-medium text-gray-900 dark:border-white/20 dark:bg-white/5 dark:text-white"
+              className="inline-flex items-center justify-center gap-3 rounded-md border border-gray-300 bg-white px-6 py-3 font-medium text-gray-900 transition-transform duration-200 hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0 dark:border-white/20 dark:bg-white/5 dark:text-white"
             >
               Download resume
               <Image src={assets.download_icon} alt="" className="w-4 dark:invert" />
-            </motion.a>
+            </a>
           </div>
 
           <div className="mt-10 grid gap-3 sm:grid-cols-3">
@@ -83,15 +70,9 @@ const Header = () => {
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ y: 24, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.45, delay: 0.08 }}
-          viewport={{ once: true }}
-          className="relative"
-        >
+        <div className="hero-visual-enter relative">
           <div className="rounded-[2rem] border border-gray-200 bg-white p-4 shadow-2xl shadow-gray-900/10 dark:border-white/10 dark:bg-white/5 dark:shadow-black/30">
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-gray-100 dark:bg-white/5">
               <Image
@@ -100,7 +81,7 @@ const Header = () => {
                 sizes="(min-width: 1280px) 500px, (min-width: 1024px) 40vw, calc(100vw - 48px)"
                 alt="Wenduo Wang profile photo"
                 className="object-cover object-[48%_center]"
-                priority
+                preload
               />
             </div>
 
@@ -130,7 +111,7 @@ const Header = () => {
               deployment-ready web systems.
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
